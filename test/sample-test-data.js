@@ -19,7 +19,7 @@ export const travelers = [
         name: "Welsh Giffin",
         travelerType: "thrill-seeker"
     }
-]
+];
 
 export const trips = [
     {
@@ -81,8 +81,8 @@ export const trips = [
         duration: 0,
         status: "denied",
         suggestedActivities: []
-    },
-]
+    }
+];
 
 export const destinations = [
     {
@@ -124,7 +124,6 @@ export const destinations = [
         estimatedFlightCostPerPerson: 1200,
         image: "https://images.unsplash.com/photo-1534758607507-754e582adfa4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
         alt: "a courtyard with trees and mountain in the distance"
-    },
-]
+    }
+];
 
-export default 
