@@ -1,4 +1,4 @@
-export const travelers = [
+const travelersData = [
     {
         id: 20,
         name: "Gregg Tours",
@@ -21,7 +21,7 @@ export const travelers = [
     }
 ];
 
-export const trips = [
+const trips = [
     {
         id: 169,
         userID: 23,
@@ -84,7 +84,7 @@ export const trips = [
     }
 ];
 
-export const destinations = [
+const destinations = [
     {
         id: 15,
         destination: "Manila, Philippines",
@@ -127,3 +127,4 @@ export const destinations = [
     }
 ];
 
+export {travelersData, trips, destinations}
