@@ -43,16 +43,6 @@ const tripData = [
         suggestedActivities: []
     },
     {
-        id: 10,
-        userID: 23,
-        destinationID: 50,
-        travelers: 6,
-        date: "2022/07/23",
-        duration: 17,
-        status: "approved",
-        suggestedActivities: []
-    },
-    {
         id: 56,
         userID: 23,
         destinationID: 21,
