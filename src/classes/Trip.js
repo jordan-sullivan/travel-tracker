@@ -1,1 +1,7 @@
-//export default Trip
+class Trip {
+    constructor() {
+        
+    }
+}
+
+export default Trip
