@@ -7,17 +7,14 @@ import { travelersData, tripData, destinations } from "./sample-test-data"
 
 
 describe("Trip", () => {
-    let traveler20, traveler23, trip169, trip114, trip56, trip57, trip45;
+    let traveler20, traveler23, traveler20Trips, traveler23Trips;
 
     beforeEach(() => {
         traveler20 = new Traveler(travelersData[0]);
         traveler23 = new Traveler(travelersData[3]);
 
-        trip169 = new Trip(tripData[0]);
-        trip114 = new Trip(tripData[1]);
-        trip56 = new Trip(tripData[2]);
-        trip57 = new Trip(tripData[3]);
-        trip45 = new Trip(tripData[4]);
+        traveler20Trips = new Trip(tripData, 20);
+        traveler23Trips = new Trip(tripData, 23);
     });
 
     it("should be a function", () => {
@@ -25,21 +22,15 @@ describe("Trip", () => {
     });
 
     it("should be an instance of Trip", () => {
-        expect(trip169).to.be.an.instanceof(Trip)
-        expect(trip45).to.be.an.instanceof(Trip);
+        expect(traveler20Trips).to.be.an.instanceof(Trip);
+        expect(traveler23Trips).to.be.an.instanceof(Trip);
     });
 
-    // it("should represent a single traveler's trips", () => {
-    //     expect(traveler22.nomad).to.deep.equal({
-    //         id: 22,
-    //         name: "Gus Courtenay"
-    //         travelerType: "foodie"
-    //     })
-    // });
+    it("should find and store all trips for a specific traveler", () => {
+        expect(traveler23Trips.travelerTripData.length).to.equal(4);
+        expect(traveler20Trips.travelerTripData.length).to.equal(1);
+    });
 
-    // it("should store a single traveler's information", () => {
-    //     expect(traveler23.id).to.deep.equal(23);
-    //     expect(traveler23.name).to.equal("Welsh Giffin");
-    //     expect(traveler23.travelerType).to.equal("thrill-seeker");
-    // });
-});
+
+
+})
