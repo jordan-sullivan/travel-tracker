@@ -31,6 +31,10 @@ describe("Trip", () => {
         expect(traveler20Trips.travelerTripData.length).to.equal(1);
     });
 
+    it("should be able to return a travelers' destination ids of all trips regardless of status", () => {
+        expect(traveler23Trips.destinationID).to.deep.equal([15, 9, 21, 17]);
+        expect(traveler20Trips.destinationID).to.deep.equal([15]);
+    });
 
 
 })
