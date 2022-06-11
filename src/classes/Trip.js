@@ -20,20 +20,20 @@ class Trip {
         return parseInt(includingAgentsFee.toFixed(2))
     }
 
-    // getYearsTripCost(destinationsData) {
-    //     const currentYearsTrips = this.travelerTripData.filter(trip => trip.date.includes("2022"));
-    //     let yearlyTripTotal = destinationsData.reduce((sum, currentDestination) => {
-    //         currentYearsTrips.forEach(trip => {
-    //             if (trip.destinationID === currentDestination.id) {
-    //                 sum += trip.duration * currentDestination.estimatedLodgingCostPerDay;
-    //                 sum += trip.travelers * currentDestination.estimatedFlightCostPerPerson;
-    //             }
-    //         })
-    //         return sum;
-    //     }, 0);
-    //     let agentsFee = 1.1 * yearlyTripTotal;
-    //     return Math.round(agentsFee);
-    // }
+    getYearsTripCost(destinationsData) {
+        const currentYearsTrips = this.travelerTripData.filter(trip => trip.date.includes("2022"));
+        let yearlyTripTotal = destinationsData.reduce((sum, currentDestination) => {
+            currentYearsTrips.forEach(trip => {
+                if (trip.destinationID === currentDestination.id) {
+                    sum += trip.duration * currentDestination.estimatedLodgingCostPerDay;
+                    sum += trip.travelers * currentDestination.estimatedFlightCostPerPerson;
+                }
+            })
+            return sum;
+        }, 0);
+        let agentsFee = 1.1 * yearlyTripTotal;
+        return Math.round(agentsFee);
+    }
 
 }
 

@@ -36,20 +36,16 @@ describe("Trip", () => {
         expect(traveler20Trips.destinationID).to.deep.equal([15]);
     });
 
-    // it("should be able to determine a trip's number of travelers", () => {
-    //     expect().to.equal()
-    // })
-
     it("should calculate the cost of a single traveler's trip ", () => {
         expect(traveler23Trips.getSingleTripCost(169, 40, 900)).to.equal(1738.00);
         expect(traveler23Trips.getSingleTripCost(114, 100, 950)).to.equal(2915.00);
         expect(traveler23Trips.getSingleTripCost(56, 100, 350)).to.equal(3245.00);
     });
 
-    // it("should calculate all trips taken this year", () => {
-    //     expect(traveler23Trips.getYearsTripCost(destinationsData)).to.equal(5819);
-    //     expect(traveler20Trips.getYearsTripCost(destinationsData)).to.equal(16368);
-    // });
+    it("should calculate all trips taken this year for a specific traveler", () => {
+        expect(traveler23Trips.getYearsTripCost(destinationsData)).to.equal(4983.00);
+        expect(traveler20Trips.getYearsTripCost(destinationsData)).to.equal(0.00);
+    });
 
     // const getAllData = (userID) => {
     //     fetchAll(userID)
