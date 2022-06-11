@@ -47,4 +47,35 @@ describe("Trip", () => {
         expect(traveler20Trips.getYearsTripCost(destinationsData)).to.equal(0.00);
     });
 
+    it("should return a traveler's past trips based on today's date as an array", () => {
+        expect(traveler23Trips.getPastTrips(tripData).length).to.equal(3);
+        //expect(traveler20Trips.getPastTrips(tripData)).to.deep.equal([]);
+    });
+
+    // it("should return a traveler's upcoming trips based on today's date as an array", () => {
+    //     expect(traveler23Trips.getUpcomingTrips(tripData)).to.deep.equal([{
+    //         id: 56,
+    //         userID: 23,
+    //         destinationID: 21,
+    //         travelers: 3,
+    //         date: "2022/07/14",
+    //         duration: 19,
+    //         status: "pending",
+    //         suggestedActivities: []
+    //     },]);
+    //     expect(traveler20Trips.getUpcomingTrips(tripData)).to.deep.equal([]);
+    // });
+
+    // it("should return a traveler's present, active trips based on today's date as an array", () => {
+    //     expect(traveler23Trips.getPresentTrips(tripData)).to.deep.equal([]);
+    //     expect(traveler20Trips.getPresentTrips(tripData)).to.deep.equal([]);
+    // });
+
+    // it("should return a traveler's status pending trips based on today's date as an array", () => {
+    //     expect(traveler23Trips.getPendingTrips(tripData)).to.deep.equal([]);
+    //     expect(traveler20Trips.getPendingTrips(tripData)).to.deep.equal([]);
+    // });
+
+    
+
 })

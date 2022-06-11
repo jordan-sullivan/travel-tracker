@@ -36,18 +36,44 @@ class Trip {
         return Math.round(agentsFee);
     }
 
-    getPastTrips() {
+    getPastTrips(tripID) {
+        const singleTrips = this.travelerTripData.filter(trip => trip.id === tripID);
+        //if the trip date is before the current date, then it is a past trip, 
+        //put it in that array
+        const pastTrips = singleTrips.filter(trip => dayjs(trip.date).format("dddd, MMMM D, YYYY").add([trip.duration]).isBefore(Date.now()));
+        console.log(pastTrips);//empty array- WHYYYY??
+        return pastTrips
+    }
+    
+    // getTravelerTripsInTime(idNum, time) {
+    //     const userTrips = this.getTripsByTravelerId(idNum);
+    //     let userTripsInTime;
+    //     if (time === 'past') {
+    //         userTripsInTime = userTrips.filter(trip => dayjs(trip.date).add([trip.duration], 'day').isBefore(Date.now()));
+    //     } else if (time === 'future') {
+    //         userTripsInTime = userTrips.filter(trip => dayjs(trip.date) > Date.now());
+    //     } else if (time === 'present') {
+    //         userTripsInTime = userTrips.filter(trip => {
+    //             const durationDate = dayjs(trip.date).add([trip.duration], 'day');
+    //             return (Date.now() <= durationDate) && (Date.now() >= dayjs(trip.date));
+    //         });
+    //     };
+    //     return userTripsInTime;
+    // };
 
-    }
-    getUpcomingTrips(){
 
-    }
-    getPresentTrips(){
 
-    }
-    getPendingTrips(){
-        
-    }
+    // getUpcomingTrips(){
+
+    // }
+
+    // getPresentTrips(){
+
+    // }
+
+    // getPendingTrips(){
+
+    // }
 
 }
 
