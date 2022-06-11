@@ -1,3 +1,75 @@
 body {
+  height: 100vh;
+  width: 100vw;
   background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+}
+
+header {
+  border: 1px solid black;
+  height: 15%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.spending-info {
+  display: flex;
+  justify-content: baseline;
+  align-items: center;
+  margin: 20px;
+}
+
+
+main {
+  border: 1px solid black;
+  height: 80%;
+  width: 100%
+}
+
+.banner-image {
+background: url(../images/sands.jpg);
+background-size: cover;
+background-attachment: fixed;
+background-size: cover;
+margin: 0;
+height: 100vh;
+border: 1px solid blue;
+height: 50%;
+width: 100%
+}
+
+.pop-out-box {
+display: flex;
+justify-content: center;
+flex-direction: column;
+align-items: center;
+border: 1px solid white;
+height: 60%;
+width: 70%;
+background: tan;
+}
+
+.container {
+  display: flex; 
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height:50%;
+  width:100%;
+
+}
+
+.past-trips, .current-trips, .upcoming-trips {
+  border: 1px solid black;
+  height: 80%;
+  width: 30%;
+  margin: 10px;
 }
