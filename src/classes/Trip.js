@@ -5,14 +5,15 @@ class Trip {
         this.tripID = tripData.id;
         this.userID = tripData.userID;
         this.destinationID = this.travelerTripData.map(trip => trip.destinationID);
-        //this.travelers = tripData.travelers;
-        //this.date = tripData.date;
-        //this.duration = tripData.duration;
-        //this.status = tripData.status;
+        this.date;
+        this.todaysDate;
+        this.travelers = tripData.travelers;
+        this.duration = tripData.duration;
+        this.status = tripData.status;
     }
+
     getSingleTripCost(tripID, lodgingCost, flightCost) {
         const singleTrip = this.travelerTripData.find(trip => trip.id === tripID);
-        console.log(singleTrip);
         const lodgingCostPerDay = singleTrip.duration * lodgingCost;
         const flightCostPerPerson = singleTrip.travelers * flightCost;
         const totalTripCost = lodgingCostPerDay + flightCostPerPerson;
@@ -33,6 +34,19 @@ class Trip {
         }, 0);
         let agentsFee = 1.1 * yearlyTripTotal;
         return Math.round(agentsFee);
+    }
+
+    getPastTrips() {
+
+    }
+    getUpcomingTrips(){
+
+    }
+    getPresentTrips(){
+
+    }
+    getPendingTrips(){
+        
     }
 
 }
