@@ -13,14 +13,14 @@ const fetchData = (dataSet) => {
 
 export const fetchAll = () => {
     apiTravelersData = fetchData("travelers");
-    //apiSingleTravelerData = fetchData("travelers/23");
     apiTripsData = fetchData("trips");
     apiDestinationsData = fetchData("destinations");
+    //apiSingleTravelerData = fetchData("travelers/23");
     return Promise.all([
         apiTravelersData,
-        //apiSingleTravelerData,
         apiTripsData,
         apiDestinationsData,
+        //apiSingleTravelerData,
     ]);
 };
 
