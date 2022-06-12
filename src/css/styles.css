@@ -4,6 +4,9 @@ body {
   background: url(../images/sands.jpg);
   background-size: cover;
   background-attachment: fixed;
+  font-family: Helvetic, sans-serif ;
+  font-weight: light;
+  -webkit-font-smoothing: antialiased 
 }
 
 header {
@@ -97,103 +100,111 @@ url(../images/sands.jpg);
   background-size: cover;
   background-attachment: initial;
 }
-/* Fancy Form  */
 
+
+/* - - - - - Fancy Form - - - - - */
 
 form {
   position: relative;
   display: inline-block;
-  max-width: 700px;
-  min-width: 500px;
+  height: 550px;
+  max-width: 1000px;
+  min-width: 1000px;
   box-sizing: border-box;
   padding: 30px 25px;
   background-color: white;
-  border-radius: 40px;
+  border-radius: 5px;
   margin: 40px 0;
-  left: 50%;
+}
+
+h3 {
+  color: tan;
+  font-weight: 100;
+  letter-spacing: 0.01em;
+  margin-left: 15px;
+  margin-bottom: 35px;
+  text-transform: uppercase;
+}
+      
+.book-this-trip {
+  transition: width 1s, height 1s;
+  margin-top: 35px;
+  background-color: white;
+  border: 1px solid tan;
+  line-height: 0;
+  font-size: 17px;
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 20px 15px ;
+  border-radius: 60px;
+  color: tan;
+  font-weight: 100;
+  letter-spacing: 0.01em;
+  position: relative;
+  z-index: 1;
 }
     
-  h3 {
-    color: red;
-    font-weight: 100;
-    letter-spacing: 0.01em;
-    margin-left: 15px;
-    margin-bottom: 35px;
-    text-transform: uppercase;
-  };
-      
-  .book-this-trip {
-    margin-top: 35px;
-    background-color: white;
-    border: 1px solid red;
-    line-height: 0;
-    font-size: 17px;
-    display: inline-block;
-    box-sizing: border-box;
-    padding: 20px 15px ;
-    border-radius: 60px;
-    color: red;
-    font-weight: 100;
-    letter-spacing: 0.01em;
-    position: relative;
-    z-index: 1;
-  }
-  .book-this-trip:hover {
-      color: white;
-      background-color: red;
-  }
-
-  .book.this.trip:focus{
-     color: white;
-     background-color: red
-  }
+.book-this-trip:hover {
+  color: white;
+  background-color: tan;
+} 
     
-  .question {
-    position: relative;
-    padding: 10px 0
-  }
+.book-this-trip:focus {
+  color: white;
+  background-color: tan
+}
+    
+.question {
+   position: relative;
+  padding: 10px 0
+}
+    
+.question:first-of-type{
+  padding-top: 0
+}
       
-  label{
-      transform-origin: left center;
-      color: red;
-      font-weight: 100;
-      letter-spacing: 0.01em;
-      font-size: 17px;
-      box-sizing: border-box;
-      padding: 10px 15px;
-      display: block;
-      position: absolute;
-      margin-top: -40px;
-      z-index: 2;
-      pointer-events: none;
-  }
+.question:last-of-type {
+  padding-bottom: 0
+}
       
-  .text {
-      appearance: none;
-      background-color: none;
-      border: 1px solid red;
-      line-height: 0;
-      font-size: 17px;
-      width: 100%;
-      display: block;
-      box-sizing: border-box;
-      padding: 10px 15px;
-      border-radius: 60px;
-      color: red;
-      font-weight: 100;
-      letter-spacing: 0.01em;
-      position: relative;
-      z-index: 1;
-  }
+label {
+  transition: width 1s, height 1s;
+  transform-origin: left center;
+  color: tan;
+  font-weight: 100;
+  letter-spacing: 0.01em;
+  font-size: 17px;
+  box-sizing: border-box;
+  padding: 10px 15px;
+  display: block;
+  position: absolute;
+  margin-top: -40px;
+  z-index: 2;
+  pointer-events: none;
+};
       
-      .text:focus{
-        outline: none;
-        background: red;
-        color: white;
-        margin-top: 30px;
-      }
-        
-      .text:valid {
-        margin-top: 30px
-      }
-          
+.text {
+  transition: width 1s, height 1s;
+  appearance: none;
+  background-color: none;
+  border: 1px solid tan;
+  line-height: 0;
+  font-size: 25px;
+  width: 100%;
+  display: block;
+  box-sizing: border-box;
+  padding: 10px 15px;
+  border-radius: 60px;
+  color: tan;
+  font-weight: 100;
+  letter-spacing: 0.01em;
+  position: relative;
+  z-index: 1;
+}
+      
+.text:focus {
+  outline: none;
+  background: tan;
+  color: white;
+  margin-top: 30px;
+}

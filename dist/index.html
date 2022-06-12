@@ -40,27 +40,35 @@
         <section class="upcoming-trips">upcoming-trips</section>
       </container>
     </section>
-
-    <form hidden>
-      <h3>Fancy Text Inputs</h1>
-      <div class="question">
+<section class="book-trip-modal" id="bookTripModal" >
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <form>
+      <h3>Let's Book a Trip!</h3>
+      <article class="question">
         <input type="text" class="text" required />
-        <label>First Name</label>
-      </div>
-      <div class="question">
-        <input type="text" required />
-        <label>Last Name</label>
-      </div>
-      <div class="question">
-        <input type="text" required />
-        <label>Email Address</label>
-      </div>
-      <div class="question">
-        <input type="text" required />
-        <label>Email Confirm</label>
-      </div>
-      <button class="book-this-trip">Submit</button>
+        <label class="travel-destination">Travel Destination</label>
+      </article>
+      <article class="question">
+        <input type="text" class="text" required />
+        <label>Date</label>
+      </article>
+      <article class="question">
+        <input type="text" class="text" required />
+        <label class="number-days">Number of Days</label>
+      </article>
+      <article class="question">
+        <input type="text" class="text" required />
+        <label>Number of Travelers</label>
+      </article>
+      <article class="question">
+        <input type="text" class="text" required />
+        <label>Your Estimated Cost for this trip is: $575.00</label>
+      </article>
+      <button class="book-this-trip">Book This Trip</button>
     </form>
+  </div>
+</section>
     
   </main>
   <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
