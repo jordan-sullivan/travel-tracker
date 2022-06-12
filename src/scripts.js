@@ -1,14 +1,29 @@
-// This is the JavaScript entry file - your code begins here
-// Do not delete or rename this file ********
-
-// An example of how you tell webpack to use a CSS (SCSS) file
-//import dayjs from 'dayjs';
 import './css/styles.css';
-
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/sands.jpg'
 import dayjs from 'dayjs';
 dayjs().format();
+import { fetchAll } from "./api-calls.js";
 
+// Global Variables //
+let travelersData, destinationsData, tripsData, singleTravelerData;
 
-console.log('This is the JavaScript entry file - your code begins here.');
+//Event listeners//
+window.addEventListener("load", () => {
+    getAllData(userID);
+});
+
+const getAllData = (userID) => {
+        fetchAll(userID)
+            .then(data => {
+                travelersData = data[0].travelers;
+                tripsData = data[1].trips;
+                destinationsData = data[2].destinations;
+                singleTravelerData = data[3];
+
+                traveler = new Traveler(singleTravelerData)
+                travelers = travelersData.map(trav => new Traveler(trav));
+                allTrips = tripsData.map(trip => new Trip(trip));
+                allDestinations = destinationsData.map(dest => new Destination(dest));
+            })
+    }
+
