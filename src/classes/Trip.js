@@ -38,22 +38,15 @@ class Trip {
     }
 
     getPastTrips() {
-        //const singleTrips = this.travelerTripData.filter(trip => trip.id === tripID);
-        //if the trip date is before the current date, then it is a past trip, 
-        //put it in that array
-        const pastTrips = this.travelerTripData
-        .filter(trip => dayjs(trip.date)
-        // .format("dddd, MMMM D, YYYY")
-        .add([trip.duration], "day")
-        .isBefore(Date.now()));
-        console.log(pastTrips);//empty array-
+        const pastTrips = this.travelerTripData.filter(trip => dayjs(trip.date).add([trip.duration], "day").isBefore(Date.now()));
         return pastTrips
     }
 
 
-    // getUpcomingTrips(){
-
-    // }
+    getUpcomingTrips(){
+        const upcomingTrips = this.travelerTripData.filter(trip => dayjs(trip.date).add([trip.duration], "day").isAfter(Date.now()));
+        return upcomingTrips
+    }
 
     // getPresentTrips(){
 

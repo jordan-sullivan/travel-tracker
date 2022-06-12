@@ -47,7 +47,7 @@ describe("Trip", () => {
         expect(traveler20Trips.getYearsTripCost(destinationsData)).to.equal(0.00);
     });
 
-    it("should store the past trips in an array", () => {
+    it("should store the traveler's past trips in an array", () => {
         expect(traveler23Trips.getPastTrips().length).to.equal(3);
         expect(traveler20Trips.getPastTrips()).to.deep.equal([{
             id: 45,
@@ -61,18 +61,9 @@ describe("Trip", () => {
         }]);
     });
 
-    // it("should store the past trips in an array", () => {
-    //     expect(traveler23Trips.getPastTrips().length).to.equal(3);
-    //     expect(traveler20Trips.getPastTrips()).to.deep.equal([{
-    //         id: 45,
-    //         userID: 20,
-    //         destinationID: 15,
-    //         travelers: 1,
-    //         date: "2020/09/06",
-    //         duration: 0,
-    //         status: "approved",
-    //         suggestedActivities: []
-    //     }]);
-    // });
+    it("should store the traveler's upcoming trips in an array, regardless of status", () => {
+        expect(traveler23Trips.getUpcomingTrips().length).to.equal(1);
+        expect(traveler20Trips.getUpcomingTrips()).to.deep.equal([]);
+    });
 
 })
