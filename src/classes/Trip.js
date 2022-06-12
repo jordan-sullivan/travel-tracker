@@ -32,7 +32,25 @@ class Trip {
         return Math.round(agentsFee);
     }
 
+    getPastTrips() {
+        const pastTrips = this.travelerTripData.filter(trip => dayjs(trip.date).add([trip.duration], "day").isBefore(Date.now()));
+        return pastTrips
+    }
 
+
+    getUpcomingTrips() {
+        const upcomingTrips = this.travelerTripData.filter(trip => dayjs(trip.date).add([trip.duration], "day").isAfter(Date.now()));
+        return upcomingTrips
+    }
+
+    getPresentTrip() {
+        const presentTrip = this.travelerTripData.filter(trip => dayjs(trip.date).add([trip.duration], "day") === (Date.now()));
+        return presentTrip
+    }
+
+    getPendingTrips() {
+        return this.travelerTripData.filter(trip => trip.status === "pending")
+    }
 
 }
 
