@@ -1,4 +1,4 @@
-export const travelers = [
+const travelersData = [
     {
         id: 20,
         name: "Gregg Tours",
@@ -21,13 +21,13 @@ export const travelers = [
     }
 ];
 
-export const trips = [
+const tripData = [
     {
         id: 169,
         userID: 23,
         destinationID: 15,
         travelers: 1,
-        date: "2020/01/12",
+        date: "2022/01/12",
         duration: 17,
         status: "approved",
         suggestedActivities: []
@@ -38,16 +38,6 @@ export const trips = [
         destinationID: 9,
         travelers: 1,
         date: "2020/03/14",
-        duration: 17,
-        status: "approved",
-        suggestedActivities: []
-    },
-    {
-        id: 10,
-        userID: 23,
-        destinationID: 50,
-        travelers: 6,
-        date: "2022/07/23",
         duration: 17,
         status: "approved",
         suggestedActivities: []
@@ -69,7 +59,7 @@ export const trips = [
         travelers: 2,
         date: "2019/07/04",
         duration: 20,
-        status: "denied",
+        status: "approved",
         suggestedActivities: []
     },
     {
@@ -79,12 +69,12 @@ export const trips = [
         travelers: 1,
         date: "2020/09/06",
         duration: 0,
-        status: "denied",
+        status: "approved",
         suggestedActivities: []
     }
 ];
 
-export const destinations = [
+const destinationsData = [
     {
         id: 15,
         destination: "Manila, Philippines",
@@ -127,3 +117,4 @@ export const destinations = [
     }
 ];
 
+export {travelersData, tripData, destinationsData}
