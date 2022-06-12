@@ -1,3 +1,4 @@
+import dayjs from "dayjs"
 class Trip {
     constructor(tripData, userID) {
         this.allTripData = tripData;
@@ -37,17 +38,30 @@ class Trip {
     }
 
     getPastTrips() {
+        //const singleTrips = this.travelerTripData.filter(trip => trip.id === tripID);
+        //if the trip date is before the current date, then it is a past trip, 
+        //put it in that array
+        const pastTrips = this.travelerTripData
+        .filter(trip => dayjs(trip.date)
+        // .format("dddd, MMMM D, YYYY")
+        .add([trip.duration], "day")
+        .isBefore(Date.now()));
+        console.log(pastTrips);//empty array-
+        return pastTrips
+    }
 
-    }
-    getUpcomingTrips(){
 
-    }
-    getPresentTrips(){
+    // getUpcomingTrips(){
 
-    }
-    getPendingTrips(){
-        
-    }
+    // }
+
+    // getPresentTrips(){
+
+    // }
+
+    // getPendingTrips(){
+
+    // }
 
 }
 

@@ -47,4 +47,32 @@ describe("Trip", () => {
         expect(traveler20Trips.getYearsTripCost(destinationsData)).to.equal(0.00);
     });
 
+    it("should store the past trips in an array", () => {
+        expect(traveler23Trips.getPastTrips().length).to.equal(3);
+        expect(traveler20Trips.getPastTrips()).to.deep.equal([{
+            id: 45,
+            userID: 20,
+            destinationID: 15,
+            travelers: 1,
+            date: "2020/09/06",
+            duration: 0,
+            status: "approved",
+            suggestedActivities: []
+        }]);
+    });
+
+    // it("should store the past trips in an array", () => {
+    //     expect(traveler23Trips.getPastTrips().length).to.equal(3);
+    //     expect(traveler20Trips.getPastTrips()).to.deep.equal([{
+    //         id: 45,
+    //         userID: 20,
+    //         destinationID: 15,
+    //         travelers: 1,
+    //         date: "2020/09/06",
+    //         duration: 0,
+    //         status: "approved",
+    //         suggestedActivities: []
+    //     }]);
+    // });
+
 })

@@ -59,7 +59,7 @@ const tripData = [
         travelers: 2,
         date: "2019/07/04",
         duration: 20,
-        status: "denied",
+        status: "approved",
         suggestedActivities: []
     },
     {
@@ -69,7 +69,7 @@ const tripData = [
         travelers: 1,
         date: "2020/09/06",
         duration: 0,
-        status: "denied",
+        status: "approved",
         suggestedActivities: []
     }
 ];
