@@ -1,5 +1,5 @@
 //Global Variables//
-let apiTravelersData, apiTripsData, apiDestinationData;
+let apiTravelersData, apiTripsData, apiDestinationsData;
 
 //Query Selectors//
 //const postError = document.querySelector(".error");
@@ -13,14 +13,14 @@ const fetchData = (dataSet) => {
 
 export const fetchAll = () => {
     apiTravelersData = fetchData("travelers");
-    apiSingleTravelerData = fetchData("travelers/23");
+    //apiSingleTravelerData = fetchData("travelers/23");
     apiTripsData = fetchData("trips");
     apiDestinationsData = fetchData("destinations");
     return Promise.all([
         apiTravelersData,
         //apiSingleTravelerData,
         apiTripsData,
-        apiDestinationData,
+        apiDestinationsData,
     ]);
 };
 
