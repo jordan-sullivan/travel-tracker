@@ -66,4 +66,23 @@ describe("Trip", () => {
         expect(traveler20Trips.getUpcomingTrips()).to.deep.equal([]);
     });
 
+    it("should store the traveler's active, present trips in an array", () => {
+        expect(traveler23Trips.getPresentTrip().length).to.equal(0);
+        expect(traveler20Trips.getPresentTrip()).to.deep.equal([]);
+    });
+
+    it("should store the traveler's pending trips in an array", () => {
+        expect(traveler23Trips.getPendingTrips()).to.deep.equal([{
+            id: 56,
+            userID: 23,
+            destinationID: 21,
+            travelers: 3,
+            date: "2022/07/14",
+            duration: 19,
+            status: "pending",
+            suggestedActivities: []
+        },]);
+        expect(traveler20Trips.getPendingTrips().length).to.equal(0);
+    });
+
 })

@@ -3,14 +3,9 @@ class Trip {
     constructor(tripData, userID) {
         this.allTripData = tripData;
         this.travelerTripData = tripData.filter(trip => trip.userID === userID);
+        this.destinationID = this.travelerTripData.map(trip => trip.destinationID);
         this.tripID = tripData.id;
         this.userID = tripData.userID;
-        this.destinationID = this.travelerTripData.map(trip => trip.destinationID);
-        this.date;
-        this.todaysDate;
-        this.travelers = tripData.travelers;
-        this.duration = tripData.duration;
-        this.status = tripData.status;
     }
 
     getSingleTripCost(tripID, lodgingCost, flightCost) {
@@ -48,13 +43,14 @@ class Trip {
         return upcomingTrips
     }
 
-    // getPresentTrips(){
+    getPresentTrip(){
+    const presentTrip = this.travelerTripData.filter(trip => dayjs(trip.date).add([trip.duration], "day") === (Date.now()));
+        return presentTrip
+    }
 
-    // }
-
-    // getPendingTrips(){
-
-    // }
+    getPendingTrips(){
+    return this.travelerTripData.filter(trip => trip.status === "pending")
+    }
 
 }
 
