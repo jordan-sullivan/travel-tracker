@@ -1,16 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Webpack Starter Kit</title>
+  <title>Dusty Nomad: Travel Tracker</title>
 </head>
+
+<header>
+  <section class="title">
+    <h1>Dusty Nomad: Travel Tracker</h1>
+  </section>
+  <nav>
+    <section class="spending-info">
+      <p>Rewards points: 13,600 </p>
+      <p> Total yearly spending: $7,450</p>
+    </section>
+    <section class="nav-buttons"> 
+      <button>Destinations</button>
+      <button>Book A Trip</button>
+      <button>My Account</button>
+    </section>
+  </nav>
+</header>
+
 <body>
-  <img src="./images/turing-logo.png" alt="turing logo">
-  
+  <main> 
+
+    <section class="banner-image">
+      <!-- <img src="./images/sands.jpg" alt="lobby hallway of a desert hotel" > -->
+    </section>
+
+    <section class="pop-out-box">
+      <h2>Hi Jordan,</h2>
+      <button>Let's Plan Your Next Trip</button>
+      <container class="container">
+        <section class="past-trips">past-trips</section>
+        <section class="current-trips">current-trips</section>
+        <section class="upcoming-trips">upcoming-trips</section>
+      </container>
+    </section>
+<section class="book-trip-modal hidden" id="bookTripModal" >
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <form>
+      <h3>Let's Book a Trip!</h3>
+      <article class="question">
+        <input type="text" class="text" required />
+        <label class="travel-destination">Travel Destination</label>
+      </article>
+      <article class="question">
+        <input type="text" class="text" required />
+        <label>Date</label>
+      </article>
+      <article class="question">
+        <input type="text" class="text" required />
+        <label class="number-days">Number of Days</label>
+      </article>
+      <article class="question">
+        <input type="text" class="text" required />
+        <label>Number of Travelers</label>
+      </article>
+      <article class="question">
+        <input type="text" class="text" required />
+        <label>Your Estimated Cost for this trip is: $575.00</label>
+      </article>
+      <button class="book-this-trip">Book This Trip</button>
+    </form>
+  </div>
+</section>
+    
+  </main>
   <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
   <script src="bundle.js"></script>
-
 </body>
 </html>
