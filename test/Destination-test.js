@@ -1,5 +1,4 @@
 import { expect } from "chai";
-//import Traveler from "../src/classes/Traveler";
 import { destinationsData } from "../test/sample-test-data";
 import Destination from '../src/classes/Destination';
 
