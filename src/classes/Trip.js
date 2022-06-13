@@ -4,8 +4,8 @@ class Trip {
         this.allTripData = tripData;
         this.travelerTripData = tripData.filter(trip => trip.userID === userID);
         this.destinationID = this.travelerTripData.map(trip => trip.destinationID);
-        this.tripID = tripData.id;
-        this.userID = tripData.userID;
+        //this.tripID = tripData.id;
+        //this.userID = tripData.userID;
     }
 
     getSingleTripCost(tripID, lodgingCost, flightCost) {
