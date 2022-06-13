@@ -1,212 +1,266 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-family: "Raleway", sans-serif;
+  color: #093d39;
+  line-height: 1.75;
+}
+
 body {
-  height: 100vh;
-  width: 100vw;
-  background: url(../images/sands.jpg);
+  background: white;
+  /* background: url(../images/sands.jpg);
   background-size: cover;
-  background-attachment: fixed;
-  font-family: Helvetic, sans-serif ;
-  font-weight: light;
-  -webkit-font-smoothing: antialiased 
+  background-attachment: fixed; */
 }
 
-header {
-  height: 15%;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.click-to-book {
+  font-size: 2.5em;
+  margin-top: 2%;
+  text-align: center;
+  border-bottom: solid .5px #093d39;
+  padding-bottom: 1.6%;
 }
 
-nav {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
+h5 {
+  margin-left: 1.5%;
+  font-size: 2em;
+  font-weight: bold;
+  margin-top: 1%;
 }
 
-.spending-info {
+.total-spent-msg {
+  font-size: 1em;
+}
+
+.total-spent {
+  font-size: 1.5em;
+}
+
+.main-header {
   display: flex;
-  justify-content: baseline;
-  align-items: center;
-  margin: 20px;
+  justify-content: flex-start;
+  border-bottom: solid .5px #093d39;
+  color: white;
+  background: #093d39;
+}
+
+.main-title {
+  color: white;
+  background: #093d39;
+  font-size: 2em;
+  margin-right: 55%;
+  display: flex;
+  justify-content:center;
+  border-bottom: solid .5px #093d39;
+  color: white;
+}
+
+.greeting-msg {
+  font-size: 4.6em;
+  display: flex;
+  margin-right: 3%;
+  margin-left: 3%;
+}
+
+.cost-logout-section {
+  float: right;
+  text-align: center;
+  padding: .5%;
+  width: 15%;
 }
 
 .nav-buttons {
-  color: white;
-}
-
-
-main {
-  height: 80%;
-  width: 100%;
   display: flex;
-  justify-content:end;
-  flex-direction: column;
+  justify-content: space-evenly;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-bottom: 1%;
+}
+
+.nav-btn {
+  padding: .5% 2%;
+  border-radius: 2%;
+  border: none;
+  box-shadow: 1px .5px 3px 0px black;
+  width: 15%;
+  font-size: 1em;
+}
+
+.login-btn:hover,
+.nav-btn:hover {
+  cursor: pointer;
+  color: tan;
+  transform: translateY(-2px);
+  transition: .4s;
+}
+
+.logout-btn:hover {
+  cursor: pointer;
+  background: white;
+  color: tan;
+}
+
+.trip-cards-container {
+  display: grid;
+  padding: .5em;
+  grid-template-columns: repeat(4, 1fr);
   align-items: center;
+  gap: 2em;
+  margin-top: .5em;
+  width: 100%;
+  height: 100%;
 }
 
-/* .banner-image {
-background: url(../images/sands.jpg);
-background-size: cover;
-background-attachment: fixed;
-margin: 0;
-height: 100vh;
-border: 1px solid blue;
-height: 50%;
-width: 100%
-} */
-
-.pop-out-box {
-display: flex;
-justify-content: center;
-flex-direction: column;
-align-items: center;
-height: 95%;
-width: 70%;
-background-image: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)),
-url(../images/sands.jpg);
+.trip-card {
+  border: solid 1px black;
+  font-size: 1em;
+  border-radius: .5em;
+  padding: 1em;
+  margin-left: .5em;
+  margin-right: .5em;
+  box-shadow: .01em .1em .5em black;
 }
 
-.container {
-  display: flex; 
-  flex-direction: row;
+.no-trip {
+  font-size: 1em;
+  margin-left: 4%;
+}
+
+.img-wrapper {
+  height: 100%;
+  width: 100%;
+}
+
+.trip-img {
+  height: 8%;
+  width: 100%;
+  border-radius: 5%;
+}
+
+.click-to-book:hover {
+  cursor: pointer;
+  color: tan;
+  transition-property: all;
+  transition-duration: .4s;
+  transition-timing-function: ease-in-out;
+  letter-spacing: 5px;
+}
+
+.booking-form {
+  font-size: 1.4em;
+  display: flex;
+  padding: 2em;
+  border-bottom: solid .5px #093d39;
+}
+
+.form-fields {
+  font-size: .7em;
+  border: solid .2px tan;
+  border-radius: 5%;
+  padding: 1%;
+  box-shadow: .2px .2px 1px 0px #093d39;
+}
+
+.cost-btn,
+.book-btn {
+  display: inline-flex;
+  justify-content: center;
+  font-size: .7em;
+  width: 100%;
+  height: 35%;
+  margin-left: 5%;
+  box-shadow: .5px .5px 5px 0px #093d39;
+}
+
+.cost-btn:hover,
+.book-btn:hover {
+  cursor: pointer;
+  color: tan;
+  transform: translateY(-2px);
+  transition: .4s;
+}
+
+.cost-btn {
+  margin-bottom: 2%;
+}
+
+// MODAL POP UPS
+
+.cost-modal,
+.book-modal {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+}
+
+.trip-costs,
+.booking-confirm-msg {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height:50%;
-  width:100%;
-
+  font-family: sans-serif;
 }
 
-.past-trips, .current-trips, .upcoming-trips {
-  /* border: 4px solid black; */
-  border-radius: 2%;
-  height: 90%;
-  width: 30%;
-  margin: 10px;
-}
-
-.past-trips {
-  background: url(../images/petrified.jpg);
-  background-size: cover;
-  background-attachment:initial;
-}
-.current-trips {
-  background: url(../images/pink-pool.jpg);
-  background-size: cover;
-  background-attachment: initial;
-}
-.upcoming-trips {
-  background: url(../images/bath.jpg);
-  background-size: cover;
-  background-attachment: initial;
-}
-
-
-/* - - - - - Fancy Form - - - - - */
-
-form {
-  position: relative;
-  display: inline-block;
-  height: 550px;
-  max-width: 1000px;
-  min-width: 1000px;
-  box-sizing: border-box;
-  padding: 30px 25px;
-  background-color: white;
-  border-radius: 5px;
-  margin: 40px 0;
-}
-
-h3 {
+.trip-cost,
+.trip-cost-per-person {
+  margin-top: -4%;
+  font-size: 3em;
   color: tan;
-  font-weight: 100;
-  letter-spacing: 0.01em;
-  margin-left: 15px;
-  margin-bottom: 35px;
-  text-transform: uppercase;
 }
-      
-.book-this-trip {
-  transition: width 1s, height 1s;
-  margin-top: 35px;
-  background-color: white;
-  border: 1px solid tan;
-  line-height: 0;
-  font-size: 17px;
-  display: inline-block;
-  box-sizing: border-box;
-  padding: 20px 15px ;
-  border-radius: 60px;
-  color: tan;
-  font-weight: 100;
-  letter-spacing: 0.01em;
-  position: relative;
-  z-index: 1;
-}
-    
-.book-this-trip:hover {
-  color: white;
-  background-color: tan;
-} 
-    
-.book-this-trip:focus {
-  color: white;
-  background-color: tan
-}
-    
-.question {
-   position: relative;
-  padding: 10px 0
-}
-    
-.question:first-of-type{
-  padding-top: 0
-}
-      
-.question:last-of-type {
-  padding-bottom: 0
-}
-      
-label {
-  transition: width 1s, height 1s;
-  transform-origin: left center;
-  color: tan;
-  font-weight: 100;
-  letter-spacing: 0.01em;
-  font-size: 17px;
-  box-sizing: border-box;
-  padding: 10px 15px;
-  display: block;
-  position: absolute;
-  margin-top: -40px;
+
+.modal-content,
+.book-modal-content {
   z-index: 2;
-  pointer-events: none;
-};
-      
-.text {
-  transition: width 1s, height 1s;
-  appearance: none;
-  background-color: none;
-  border: 1px solid tan;
-  line-height: 0;
-  font-size: 25px;
-  width: 100%;
-  display: block;
-  box-sizing: border-box;
-  padding: 10px 15px;
-  border-radius: 60px;
-  color: tan;
-  font-weight: 100;
-  letter-spacing: 0.01em;
-  position: relative;
-  z-index: 1;
+  background-color: white;
+  padding: 0px;
+  border: 1px solid #888;
+  width: 35%;
+  height: 40%;
+  overflow-y: scroll;
+  box-shadow: 0px 7px 29px 0px black;
+  justify-content: center;
 }
-      
-.text:focus {
-  outline: none;
-  background: tan;
-  color: white;
-  margin-top: 30px;
+
+.book-modal-content {
+  height: 30%;
+}
+
+.booking-msg-info {
+  text-align: center;
+  font-size: 1.3em;
+  color: tan;
+}
+
+.close-modal {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 2.7em;
+  font-weight: bold;
+  margin-right: 2%;
+  margin-top: -2%;
+}
+
+.book-close-modal {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 2.7em;
+  font-weight: bold;
+  margin-right: 2%;
+  margin-top: -2%;
+}
+
+.close-modal:hover,
+.book-close-modal:hover {
+  cursor: pointer;
 }
 
 .hidden {
