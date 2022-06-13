@@ -1,96 +1,30 @@
-//Global Variables//
-let apiTravelersData, apiTripsData, apiDestinationsData;
+const fetchAPIData = (type) => {
+    return fetch(`http://localhost:3001/api/v1/${type}`)
+        .then(response => response.json())
+        .catch(err => displayError(err))
+}
 
-//Query Selectors//
-//const postError = document.querySelector(".error");
+const fetchSingleTraveler = (id) => {
+    return fetch(`http://localhost:3001/api/v1/travelers/${id}`)
+        .then(response => response.json())
+        .catch(err => displayError(err))
+}
 
-//Functions//
-const fetchData = (dataSet) => {
-    return fetch(`http://localhost:3001/api/v1/${dataSet}`)
-        .then((response) => response.json())
-        //.catch((error) => console.log(dataSet))
-};
-
-export const fetchAll = (randomUserID) => {
-    apiTravelersData = fetchData("travelers");
-    apiTripsData = fetchData("trips");
-    apiDestinationsData = fetchData("destinations");
-    //apiSingleTravelerData = fetchData("travelers/23");
+const fetchAll = () => {
     return Promise.all([
-        apiTravelersData,
-        apiTripsData,
-        apiDestinationsData,
-        //apiSingleTravelerData,
-    ]);
-};
+        fetchAPIData('travelers'),
+        fetchAPIData('trips'),
+        fetchAPIData('destinations'),
+        fetchSingleTraveler('25')
+    ])
+        .catch(err => displayError(err))
+}
 
-// export const postAll = (formData => {
-//     postHydration(formData);
-//     postSleep(formData);
-//     postActivity(formData);
-// });
+const displayError = (errMsg) => {
+    const bookingError = document.getElementById('bookingError');
+    const msg = errMsg.message === 'Failed to fetch' ?
+        "Internet connection may be unstable. Please try again later." : errMsg;
+    bookingError.innerText = `Something went wrong, please try again later.`;
+}
 
-// const postHydration = (formData) => {
-//     fetch("http://localhost:3001/api/v1/hydration", {
-//         method: "POST",
-//         body: JSON.stringify({
-//             userID: formData.id, date: formData.date, numOunces: formData.numberOunces
-//         }),
-//         headers: { "Content-type": "application/json" },
-//     })
-//         .then(res => throwError(res))
-//         .then(json => reloadData())
-//         .catch(error => {
-//             console.warn(error.message)
-//             displayErrorMessage(error)
-//         })
-// };
-
-// const postSleep = (formData) => {
-//     fetch("http://localhost:3001/api/v1/sleep", {
-//         method: "POST",
-//         body: JSON.stringify({
-//             userID: formData.id, date: formData.date, hoursSlept: formData.hoursSlept, sleepQuality: formData.sleepQuality
-//         }),
-//         headers: { "Content-type": "application/json" },
-//     })
-//         .then(res => throwError(res))
-//         .then(json => reloadData())
-//         .catch(error => {
-//             console.warn(error.message)
-//             displayErrorMessage(error)
-//         })
-// };
-
-// const postActivity = (formData) => {
-//     fetch("http://localhost:3001/api/v1/activity", {
-//         method: "POST",
-//         body: JSON.stringify({
-//             userID: formData.id, date: formData.date, flightsOfStairs: formData.flights, minutesActive: formData.mins,
-//             numSteps: formData.steps
-//         }),
-//         headers: { "Content-type": "application/json" },
-//     })
-//         .then(res => throwError(res))
-//         .then(json => reloadData())
-//         .catch(error => {
-//             console.warn(error.message)
-//             displayErrorMessage(error)
-//         })
-// };
-
-// const throwError = (res) => {
-//     if (!res.ok) {
-//         throw new Error("Please make sure all fields are filled out.");
-//     } else {
-//         return res.json();
-//     };
-// };
-
-// const displayErrorMessage = (error) => {
-//     if (error.message === "Failed to fetch") {
-//         return postError.innerText = "OOPS something went wrong";
-//     } else {
-//         return postError.innerText = error.message;
-//     };
-//};
+export { fetchAll }

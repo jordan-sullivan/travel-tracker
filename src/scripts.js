@@ -1,85 +1,139 @@
 import './css/styles.css';
 import './images/sands.jpg'
-import dayjs from 'dayjs';
-dayjs().format();
+//import dayjs from 'dayjs';
+//dayjs().format();
 import { fetchAll } from "./api-calls.js";
 import Traveler from "./classes/Traveler.js";
 import Trip from "./classes/Trip.js";
 import Destination from "./classes/Destination.js";
 
-// - - - - - Global Variables - - - - - //
+//Global Variables//
+let traveler, travelers;
+let allDestinations, allTrips;
+let date = new Date();
+let fetchSingleTravelerData, fetchTravelersData, fetchTripsData, fetchDestinationsData;
 
-let travelers, trips, destinations, travelersData, destinationsData, tripsData; 
-let randomUserID, currentTraveler;
 
-// - - - - - Query Selectors - - - - - //
+// Query Selectors //
+let navButtons = document.querySelectorAll(".nav-btn")
+//let allTripBtn = document.getElementById("allTrips")
 
-const pastTripsDisplay = document.querySelector(".past-trips")
-const currentTripsDisplay = document.querySelector(".current-trips")
-const upcomingTripsDisplay = document.querySelector(".upcoming-trips")
-const yearlySpending = document.querySelector(".yearly-spending")
-const welcomeMessage = document.querySelector(".welcome-message")
-const todaysDate = document.querySelector(".todays-date")
 
-// - - - - - - Event listeners - - - - - //
-
-window.addEventListener("load", () => {
-    randomUserID = makeRandomUser();
-    console.log("RANDOM USER ID #", randomUserID)
-    getAllData(randomUserID);
-    //getTravelerTrips(tripsData);
-});
-
-// - - - - - Functions - - - - - //
-
-const makeRandomUser = () => {
-    return Math.floor(Math.random() * 50);
-};
-
-const getAllData = (randomUserID) => {
-    fetchAll(randomUserID) 
+//Event Lsisterners//
+window.addEventListener("load", function () {
+    fetchAll()
     .then(data => {
-        travelersData = data[0].travelers;
-        tripsData = data[1].trips;
-        destinationsData = data[2].destinations;
-        travelers = travelersData.map(trav => new Traveler(trav));
-        trips = tripsData.map(trip => new Trip(trip));
-        destinations = destinationsData.map(dest => new Destination(dest));
-        loadTravelerInfo();
-    });
+        fetchTravelersData = data[0].travelers;
+        //console.log(fetchTravelersData);
+        fetchTripsData = data[1].trips;
+        // console.log(fetchTripsData);
+        fetchDestinationsData = data[2].destinations;
+        // console.log(fetchDestinationsData);
+        fetchSingleTravelerData = new Traveler(data[3]);
+        //console.log("Single TravelerData", fetchSingleTravelerData);
+        traveler = fetchSingleTravelerData;
+        travelers = fetchTravelersData.map(trav => new Traveler(trav));
+        allTrips = fetchTripsData.map(trip => new Trip(trip));
+        allDestinations = fetchDestinationsData.map(dest => new Destination(dest));
+        renderTraveler()
+    })
+    .catch(err => displayError(err))
+    navButtons.forEach(button => button.addEventListener('click', renderCards))
+})
+
+const renderTraveler = () => {
+    traveler.findTrips(allTrips, allDestinations);
+    traveler.calculateTotalAmountSpent(date, allDestinations);
+    displayTravelerInfo();
 }
 
-const loadTravelerInfo = () => {
-    currentTraveler = travelers.find(traveler => traveler.id === randomUserID )
-    console.log("currentTraveler", currentTraveler)
-    // const currentTravTrips = trips.filter(trip => {
-    //         const result = trip.travelerTripData.some(data => {
-                     //console.log(data)
-    //             return data.userID === currentTraveler.id
-    //             })
-    //             return result
-    //         })
-            //console.log("Travis", currentTravTrips)
-            //console.log("years", currentTraveler.trips.getYearsTripCost(destinationsData))
-            welcomeMessage.innerText = `Hi ${currentTraveler.returnFirstName()},`;
-            todaysDate.innerText = `${dayjs(Date.now()).format('dddd, MMMM D, YYYY')}`;
-            //displayYearlyTripCost()
-};
+const displayTravelerInfo = () => {
+    displayTravelerName(traveler);
+    displayYearlyTotal(traveler.amountSpent);
+    displayCardSectionHeader('ALL TRIPS');
+    displayTripCards(traveler.trips, allDestinations);
+}
 
-const getTravelerTrips = (tripData) => {
-    currentTraveler.listAllTrips(tripData.trips);
-    //need this one to get the total I think 
-    //nothing getting pushed into here 
-    //what is ,trips? array or obj
-    currentTraveler.allTrips.sort((a, b) => {
-        return new Date(b.date) - new Date(a.date);
-    });
-};
+const renderCards = (event) => {
+    let btnID = event.target.id;
+    let trips, cardHeader;
+    if (btnID === 'all') {
+        cardHeader = 'ALL TRIPS';
+        trips = traveler.trips;
+    }
+    if (btnID === 'past') {
+        cardHeader = 'PAST TRIPS';
+        trips = traveler.findPastTrips(date);
+        console.log('pasttrips', trips);
+    }
+    if (btnID === 'present') {
+        cardHeader = 'PRESENT TRIPS';
+        trips = traveler.findPresentTrips(date);
+        console.log('presenttrips', trips);
+    }
+    if (btnID === 'future') {
+        cardHeader = 'FUTURE TRIPS';
+        trips = traveler.findUpcomingTrips(date);
+        console.log('futuretrips', trips);
+    }
+    if (btnID === 'pending') {
+        cardHeader = 'PENDING TRIPS'
+        trips = traveler.findPendingTrips();
+        console.log('pendingtrips', trips);
+    }
+    displayCardSectionHeader(cardHeader)
+    displayTripCards(trips, allDestinations)
+}
 
-// const displayYearlyTripCost = () => {
-//     console.log("77", currentTraveler)
-//     yearlySpending.innerText = `$${currentTraveler.getYearsTripCost(destinationsData)}`;
-// };
+const displayTravelerName = (traveler) => {
+    const greetingMsg = document.getElementById('greetingMsg');
+    const firstName = traveler.name.split(' ')[0];
+    greetingMsg.innerText = `Hi ${firstName},`;
+}
 
+const displayYearlyTotal = (total) => {
+    const totalSpent = document.getElementById('totalSpent');
+    const formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD'
+    })
+    if (total !== 0) {
+        totalSpent.innerText = `${formatter.format(total)}`;
+    } else {
+        totalSpent.innerText = '$0 spent in 2022';
+    }
+}
+
+const displayCardSectionHeader = (header) => {
+    const newHeader = document.getElementById('tripCardsHeader')
+    newHeader.innerText = `${header}`;
+}
+
+const displayTripCards = (travelerTrips, allDestinations) => {
+    let cardContainer = document.getElementById('tripCardsContainer')
+    cardContainer.innerHTML = '';
+
+    if (travelerTrips.length > 0) {
+        travelerTrips.forEach(trip => {
+            let destination = allDestinations.find(dest => dest.id === trip.destinationID)
+            let splitDate = trip.date.split('/');
+            let updateDate = `${splitDate[1]}/${splitDate[2]}/${splitDate[0]}`;
+            let cardInfo = `
+          <article class="trip-card">
+            <div class="img-wrapper">
+              <h3 class="destination-name">${destination.destination}</h3>
+              <img class="trip-img" src=${destination.image} alt=${destination.alt}>
+            </div>
+            <p>trip date: ${updateDate}</p>
+            <p>travelers: ${trip.travelers}</p>
+            <p>duration: ${trip.duration}</p>
+            <p>status: ${trip.status}</p>
+          </article>`;
+            cardContainer.insertAdjacentHTML('beforeend', cardInfo);
+        });
+    } else {
+        cardContainer.innerHTML = `<article class='no-trip'>There are no trips that match this description, sorry.</article>`
+    }
+}
 
 

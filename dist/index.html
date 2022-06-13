@@ -4,74 +4,101 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <!-- <script src="https://kit.fontawesome.com/10ffbe374d.js" crossorigin="anonymous"></script> -->
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400&family=Spectral:ital,wght@1,300&display=swap"
+    rel="stylesheet">
   <title>Dusty Nomad: Travel Tracker</title>
 </head>
 
-<header>
-  <section class="title">
-    <h1>Dusty Nomad: Travel Tracker</h1>
-  </section>
-  <nav>
-    <section class="spending-info">
-      <p class="todays-date">Todays Date </p>
-      <p class="yearly-spending"> Total yearly spending:</p>
-    </section>
-    <section class="nav-buttons"> 
-      <button>Destinations</button>
-      <button>Book A Trip</button>
-      <button>My Account</button>
-    </section>
-  </nav>
-</header>
-
 <body>
-  <main> 
+  <main>
+    <section class='main-page' id='mainPage'>
+   
+      <header class='main-header' id='mainHeader'>
+        <h1 class='main-title'>Dusty Nomad: travel tracker</h1>
+        <span class='logout-btn' id='logoutBtn'>log out</span>
+      </header>
+      <section class='cost-logout-section' id='costLogoutSection'>
+        <h2 class='total-spent-msg'>total spent this year: </h2>
+        <p class='total-spent' id='totalSpent'></p>
+      </section>
+ 
+      <section class='greeting' id='greeting'>
+        <h3 class='greeting-msg' id='greetingMsg'></h3>
+      </section>
+  
+      <nav class='nav-buttons' id='navButtons'>
+        <button class='nav-btn' id='past'>past trips</button>
+        <button class='nav-btn' id='present'>present trips</button>
+        <button class='nav-btn' id='future'>future trips</button>
+        <button class='nav-btn' id='pending'>pending trips</button>
+        <button class='nav-btn' id='all'>all trips</button>
+      </nav>
 
-    <section class="banner-image">
-      <!-- <img src="./images/sands.jpg" alt="lobby hallway of a desert hotel" > -->
-    </section>
 
-    <section class="pop-out-box">
-      <h2 class="welcome-message">Hi Jordan,</h2>
-      <button>Let's Plan Your Next Trip</button>
-      <container class="container">
-        <section class="past-trips">past-trips</section>
-        <section class="current-trips">current-trips</section>
-        <section class="upcoming-trips">upcoming-trips</section>
-      </container>
-    </section>
-<section class="book-trip-modal hidden" id="bookTripModal" >
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <form>
-      <h3>Let's Book a Trip!</h3>
-      <article class="question">
-        <input type="text" class="text" required />
-        <label class="travel-destination">Travel Destination</label>
-      </article>
-      <article class="question">
-        <input type="text" class="text" required />
-        <label>Date</label>
-      </article>
-      <article class="question">
-        <input type="text" class="text" required />
-        <label class="number-days">Number of Days</label>
-      </article>
-      <article class="question">
-        <input type="text" class="text" required />
-        <label>Number of Travelers</label>
-      </article>
-      <article class="question">
-        <input type="text" class="text" required />
-        <label>Your Estimated Cost for this trip is: $575.00</label>
-      </article>
-      <button class="book-this-trip">Book This Trip</button>
-    </form>
-  </div>
-</section>
+     
+      <section class="booking-section" id='bookingSection'>
+        <h4 for="click-to-book-link" class="click-to-book" id='clickToBook'>
+          >> book your next trip << </h4>
+       
+            <form role='booking-form' class='booking-form hidden' id="bookingForm">
+              <section class="input">
+        
+                <label for="destinationForm">choose a destination:
+                  <select name="destination-choices" class='form-fields' id="destinationChoices" required>
+                    <option class='form-fields' value="0" required>choose destination</option>
+                  </select>
+                </label>
+              </section>
+              <div class="input">
+           
+                <label for="departureDateForm">departure date:
+                  <input name="departure-date-input" class='form-fields' id="departureDateInput" type="date"
+                    max="2030-12-31" required>
+                </label>
+              </div>
+              <section class="input">HLHHKHKHJK</section>
+           
+              <label for="durationForm">trip duration:
+                <input name="duration-input" class='form-fields' id="durationInput" type="number" min="1" required>
+              </label>
+              </div>
+              <div class="input">
     
+                <label for="travelersForm">number of travelers:
+                  <input name="travelers-input" class='form-fields' id="travelersInput" type="number" min="1" required>
+                </label>
+              </div>
+      
+              <div class="booking-btns">
+                <button class="cost-btn" id="costBtn">estimated trip cost</button>
+                <button class="book-btn" id="bookBtn">book your trip</button>
+              </div>
+            </form>
+  
+            <p class='booking-error' id='bookingError'></p>
+      </section>
+      <!-- ESTIMATE COST MODAL -->
+      <section class="cost-modal hidden" id="costModal">
+        <article class="modal-content" id='modalContent'>
+        </article>
+      </section>
+      <!-- BOOKING CONFIRMATION MODAL -->
+      <section class="book-modal hidden" id="bookModal">
+        <article class="book-modal-content" id='bookModalContent'>
+        </article>
+      </section>
+      <!-- TRIP CARDS -->
+      <section class='trips' id='trips'>
+        <h5 class="trip-cards-header" id="tripCardsHeader"></h5>
+        <section class='trip-cards-container' id='tripCardsContainer'>
+        </section>
+      </section>
+
+    </section>
   </main>
-  <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
   <script src="bundle.js"></script>
 </body>
+
 </html>
