@@ -1,12 +1,21 @@
 import dayjs from "dayjs"
+import Destination from "./Destination"
+
 class Trip {
-    constructor(tripData, userID) {
+    constructor(tripData) {
         this.allTripData = tripData;
-        this.travelerTripData = tripData.filter(trip => trip.userID === userID);
-        this.destinationID = this.travelerTripData.map(trip => trip.destinationID);
-        //this.tripID = tripData.id;
-        //this.userID = tripData.userID;
-    }
+        //this.travelerTripData = tripData.filter(trip => trip.userID === userID);
+        //this.destinationID = this.travelerTripData.map(trip => trip.destinationID);
+        this.tripID = tripData.id;
+        this.userID = tripData.userID;
+     
+        this.destinationID = tripData.destinationID;
+        this.travelers = tripData.travelers;
+        this.date = tripData.date;
+        this.duration = tripData.duration;
+        this.status = tripData.status;
+        this.suggestedActivities = tripData.suggestedActivities;
+    };
 
     getSingleTripCost(tripID, lodgingCost, flightCost) {
         const singleTrip = this.travelerTripData.find(trip => trip.id === tripID);
