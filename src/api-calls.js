@@ -11,7 +11,7 @@ const fetchData = (dataSet) => {
         //.catch((error) => console.log(dataSet))
 };
 
-export const fetchAll = () => {
+export const fetchAll = (randomUserID) => {
     apiTravelersData = fetchData("travelers");
     apiTripsData = fetchData("trips");
     apiDestinationsData = fetchData("destinations");
