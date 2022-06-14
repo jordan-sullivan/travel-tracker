@@ -2,59 +2,75 @@ import './css/styles.css';
 import './images/sands.jpg'
 //import dayjs from 'dayjs';
 //dayjs().format();
-import { fetchAll } from "./api-calls.js";
+import { fetchAll, postNewTrip } from "./api-calls.js";
 import Traveler from "./classes/Traveler.js";
 import Trip from "./classes/Trip.js";
 import Destination from "./classes/Destination.js";
 
 //Global Variables//
-let traveler, travelers;
-let allDestinations, allTrips;
-let date = new Date();
+let traveler, travelers, allDestinations, allTrips;
 let fetchSingleTravelerData, fetchTravelersData, fetchTripsData, fetchDestinationsData;
-
+let date = new Date();
 
 // Query Selectors //
-let navButtons = document.querySelectorAll(".nav-btn")
-//let allTripBtn = document.getElementById("allTrips")
+let clickToBook = document.getElementById('clickToBook')
+let bookForm = document.getElementById('bookingForm')
+let mainPage = document.getElementById('mainPage')
+let estimatedTripCostBtn = document.getElementById('costBtn')
 
+let navButtons = document.querySelectorAll(".nav-btn");
+let allTripBtn = document.getElementById("allTrips");
 
-//Event Lsisterners//
-window.addEventListener("load", function () {
+window.addEventListener('load', function () {
+    getAllData();
+    navButtons.forEach(button => button.addEventListener('click', loadCards))
+});
+
+//Event Listeners//
+
+// estimatedTripCostBtn.addEventListener('click', function () {
+//     showTripCosts(event)
+// });
+// closeCostModal.addEventListener('click', function() {
+//   closeModalWindow(event)
+// });
+// bookYourTripBtn.addEventListener('click', function() {
+//   bookNewTrip(event);
+// });
+// closeBookModal.addEventListener('click', function() {
+//   closeBookWindow(event)
+// });
+
+const getAllData = () => {
     fetchAll()
     .then(data => {
         fetchTravelersData = data[0].travelers;
-        //console.log(fetchTravelersData);
         fetchTripsData = data[1].trips;
-        // console.log(fetchTripsData);
         fetchDestinationsData = data[2].destinations;
-        // console.log(fetchDestinationsData);
         fetchSingleTravelerData = new Traveler(data[3]);
-        //console.log("Single TravelerData", fetchSingleTravelerData);
         traveler = fetchSingleTravelerData;
         travelers = fetchTravelersData.map(trav => new Traveler(trav));
         allTrips = fetchTripsData.map(trip => new Trip(trip));
         allDestinations = fetchDestinationsData.map(dest => new Destination(dest));
-        renderTraveler()
+        loadTravelerData()
     })
     .catch(err => displayError(err))
-    navButtons.forEach(button => button.addEventListener('click', renderCards))
-})
+}
 
-const renderTraveler = () => {
+const loadTravelerData = () => {
     traveler.findTrips(allTrips, allDestinations);
     traveler.calculateTotalAmountSpent(date, allDestinations);
     displayTravelerInfo();
-}
+};
 
 const displayTravelerInfo = () => {
     displayTravelerName(traveler);
     displayYearlyTotal(traveler.amountSpent);
-    displayCardSectionHeader('ALL TRIPS');
+    displayCardSectionHeader("ALL TRIPS");
     displayTripCards(traveler.trips, allDestinations);
-}
+};
 
-const renderCards = (event) => {
+const loadCards = (event) => {
     let btnID = event.target.id;
     let trips, cardHeader;
     if (btnID === 'all') {
@@ -83,13 +99,13 @@ const renderCards = (event) => {
     }
     displayCardSectionHeader(cardHeader)
     displayTripCards(trips, allDestinations)
-}
+};
 
 const displayTravelerName = (traveler) => {
-    const greetingMsg = document.getElementById('greetingMsg');
+    const greetingMsg = document.querySelector('.main-title');
     const firstName = traveler.name.split(' ')[0];
-    greetingMsg.innerText = `Hi ${firstName},`;
-}
+    greetingMsg.innerText = `>> ${firstName}'s travel tracker`;
+};
 
 const displayYearlyTotal = (total) => {
     const totalSpent = document.getElementById('totalSpent');
@@ -102,38 +118,148 @@ const displayYearlyTotal = (total) => {
     } else {
         totalSpent.innerText = '$0 spent in 2022';
     }
-}
+};
 
 const displayCardSectionHeader = (header) => {
     const newHeader = document.getElementById('tripCardsHeader')
     newHeader.innerText = `${header}`;
-}
+};
 
 const displayTripCards = (travelerTrips, allDestinations) => {
     let cardContainer = document.getElementById('tripCardsContainer')
     cardContainer.innerHTML = '';
-
     if (travelerTrips.length > 0) {
         travelerTrips.forEach(trip => {
             let destination = allDestinations.find(dest => dest.id === trip.destinationID)
             let splitDate = trip.date.split('/');
             let updateDate = `${splitDate[1]}/${splitDate[2]}/${splitDate[0]}`;
             let cardInfo = `
-          <article class="trip-card">
+            <article class="trip-card">
             <div class="img-wrapper">
-              <h3 class="destination-name">${destination.destination}</h3>
-              <img class="trip-img" src=${destination.image} alt=${destination.alt}>
+            <h3 class="destination-name">${destination.destination}</h3>
+            <img class="trip-img" src=${destination.image} alt=${destination.alt}>
             </div>
-            <p>trip date: ${updateDate}</p>
-            <p>travelers: ${trip.travelers}</p>
-            <p>duration: ${trip.duration}</p>
-            <p>status: ${trip.status}</p>
-          </article>`;
+            <p> ✧ trip date: ${updateDate}</p>
+            <p> ✧ for ${trip.duration} days</p>
+            <p> ✧ travelers: ${trip.travelers} people</p>
+            <p> ✦ status: ${trip.status}</p>
+            </article>`;
             cardContainer.insertAdjacentHTML('beforeend', cardInfo);
         });
     } else {
         cardContainer.innerHTML = `<article class='no-trip'>There are no trips that match this description, sorry.</article>`
     }
-}
+};
+
+// Booking Form / POST Functions //
+const showBookingForm = () => {
+    toggleView(bookForm)
+    loadPlacesDropdown(allDestinations)
+};
+
+const toggleView = (element) => {
+    element.classList.toggle('hidden')
+};
+
+const loadPlacesDropdown = (allDestinations) => {
+    const placesDropdown = document.getElementById('destinationChoices')
+    let destNames = allDestinations.sort((a, b) => a.destination.localeCompare(b.destination))
+    destNames.forEach(place => {
+        let destSelect = `
+        <option class='form-fields' value='${place.id}' required>${place.destination}</option>`
+        placesDropdown.insertAdjacentHTML('beforeend', destSelect)
+       
+    });
+};
+
+const showTripCosts = (event) => {
+    event.preventDefault()
+    const formTripData = loadFormValues();
+    const newTrip = new Trip(formTripData)
+    const formFields = checkFormFields(newTrip);
+    if (!formFields) {
+        alert('Please check to make sure all fields are filled out and departure date is a future date.')
+    } else {
+        const tripCost = newTrip.calculateTripCost(allDestinations)
+        const perPerson = newTrip.calculateCostPerPersonPerTrip(tripCost)
+        displayTripCostsModal(tripCost, perPerson)
+    }
+};
+
+const loadFormValues = () => {
+    const destinationID = document.getElementById('destinationChoices').value;
+    const departureDate = document.getElementById('departureDateInput').value;
+    const changeDate = departureDate.split('-');
+    const fixedDate = changeDate.join('/');
+    const tripLength = document.getElementById('durationInput').value;
+    const numOfTravelers = document.getElementById('travelersInput').value;
+    let postTripObject = {
+        "id": allTrips.length + 1,
+        "userID": traveler.id,
+        "destinationID": parseInt(destinationID),
+        "travelers": parseInt(numOfTravelers),
+        "date": fixedDate,
+        "duration": parseInt(tripLength),
+        "status": "pending",
+        "suggestedActivities": []
+    }
+    return postTripObject;
+};
+
+const checkFormFields = (newTrip) => {
+    const departureDate = document.getElementById('departureDateInput').value;
+    const changeDate = departureDate.split('-');
+    const fixedDate = changeDate.join('/');
+    const checkDate = new Date(fixedDate).getTime();
+    let filledOut = true;
+    if (!newTrip.destinationID || !newTrip.date || !newTrip.duration || !newTrip.travelers || checkDate < date) {
+        filledOut = false;
+    }
+    return filledOut;
+};
+
+const displayTripCostsModal = (cost, perPerson) => {
+    const costModal = document.getElementById('costModal')
+    costModal.classList.remove('hidden');
+    costModal.innerHTML = `
+    <article class="modal-content" id='modalContent'>
+    <span class="close-modal" id="closeModal">&times;</span>
+    <div class='trip-costs' id='tripCosts'>
+    <label for='trip-cost'>ESTIMATED TRIP COST:</label>
+    <p class='trip-cost'>$${cost}</p>
+    <label for='trip-cost-per-person'>COST PER PERSON:</label>
+    <p class='trip-cost-per-person'>$${perPerson}</p>
+    <p class="agent-note">*please note: prices includes a 10% agent fee</p><br><br>
+    </div>
+    </article>`;
+};
+
+const closeModalWindow = (event) => {
+    if (event.target.id === 'closeModal') {
+        hideModal()
+    }
+};
+
+const hideModal = () => {
+    const costModal = document.getElementById('costModal')
+    this.toggleView(costModal)
+};
+
+// const closeBookWindow = (event) => {
+//     //WHAT IS CALLING THJIOS
+//     if (event.target.id === 'bookCloseModal') {
+//         hideBookingModal()
+//         //WHERE IS THIS?
+//     }
+// }
 
 
+estimatedTripCostBtn.addEventListener('click', function () {
+    showTripCosts(event)
+});
+
+clickToBook.addEventListener('click', showBookingForm);
+
+// closeModal.addEventListener('click', function () {
+//     closeModalWindow(event)
+// });

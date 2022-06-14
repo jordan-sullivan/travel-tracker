@@ -9,9 +9,9 @@
 
 body {
   background: white;
-  /* background: url(../images/sands.jpg);
-  background-size: cover;
-  background-attachment: fixed; */
+/* background: url(../images/sands.jpg);
+background-size: cover;
+background-attachment: fixed; */
 }
 
 .click-to-book {
@@ -57,10 +57,10 @@ h5 {
 }
 
 .greeting-msg {
-  font-size: 4.6em;
+  font-size: 30px;;
   display: flex;
-  margin-right: 3%;
-  margin-left: 3%;
+  justify-content: flex-start;
+  margin-left: 2%;
 }
 
 .cost-logout-section {
@@ -68,11 +68,13 @@ h5 {
   text-align: center;
   padding: .5%;
   width: 15%;
+  margin-top: 1%;
 }
 
 .nav-buttons {
   display: flex;
   justify-content: space-evenly;
+  margin-top: 3%;
   margin-left: 10%;
   margin-right: 10%;
   margin-bottom: 1%;
@@ -84,21 +86,33 @@ h5 {
   border: none;
   box-shadow: 1px .5px 3px 0px black;
   width: 15%;
+  height: 20%;
   font-size: 1em;
 }
 
 .login-btn:hover,
+.logout-btn,
 .nav-btn:hover {
   cursor: pointer;
   color: tan;
-  transform: translateY(-2px);
+  transform: translateY(-6px);
   transition: .4s;
 }
 
+.logout-btn {
+display: flex;
+justify-content: space-evenly;
+color: white;
+margin-left: 10%;
+margin-top: 2%;
+border-radius: 5%;
+font-size: 20px;
+
+}
 .logout-btn:hover {
   cursor: pointer;
   background: white;
-  color: tan;
+  color: #6C4A3F;
 }
 
 .trip-cards-container {
@@ -113,7 +127,7 @@ h5 {
 }
 
 .trip-card {
-  border: solid 1px black;
+  border: solid 1px tan;
   font-size: 1em;
   border-radius: .5em;
   padding: 1em;
@@ -135,7 +149,7 @@ h5 {
 .trip-img {
   height: 8%;
   width: 100%;
-  border-radius: 5%;
+  border-radius:2%;
 }
 
 .click-to-book:hover {
@@ -184,8 +198,6 @@ h5 {
 .cost-btn {
   margin-bottom: 2%;
 }
-
-// MODAL POP UPS
 
 .cost-modal,
 .book-modal {
