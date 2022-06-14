@@ -17,14 +17,12 @@ let date = new Date();
 
 // QUERY SELECTORS //
 
-const letsBookATripButton = document.getElementById("letsBookATrip")
+const letsBookATripButton = document.getElementById("letsBookATripButton")
 const bookForm = document.getElementById("bookingForm")
-//const mainPage = document.getElementById("mainPage")
 const estimatedTripCostBtn = document.getElementById("costBtn")
 const bookButton = document.querySelector(".book-btn")
 const closeModal = document.querySelector(".close-modal");
 let navButtons = document.querySelectorAll(".nav-btn");
-//let allTripBtn = document.getElementById("allTrips");
 
 //EVENT LISTENERS//
 
@@ -229,17 +227,6 @@ const displayTripCostsModal = (cost, perPerson) => {
     </article>`;
 };
 
-// const closeModalWindow = (event) => {
-//     if (event.target.id === "closeModal") {
-//         hideModal()
-//     }
-// };
-
-// const hideModal = () => {
-//     const costModal = document.getElementById("costModal")
-//     this.toggleView(costModal)
-// };
-
 const bookNewTrip = (event) => {
     event.preventDefault();
     const postData = loadFormValues();
@@ -273,10 +260,7 @@ const displayBookingModal = (newTrip, allDestinations) => {
         <p class="booking-msg-info">${dest.destination} for ${newTrip.duration} days</p>
         <label for="booking-msg" class="booking-msg">has been booked and is being reviewed by your travel agent.</label>
       </div>
-    </article>`;
-    //need to move this below to happen when we click out of x for confirmation modal 
-    let cardHeader = "PENDING TRIPS"
-    displayCardSectionHeader(cardHeader)
+    </article>`
 }; 
 
 const findBookedDestination = (newTrip, allDestinations) => {
@@ -284,10 +268,6 @@ const findBookedDestination = (newTrip, allDestinations) => {
     return matchedDest;
 };
 
-// const formFields = () => {
-//     const bookingForm = document.getElementById("bookingForm")
-//     bookingForm.reset();
-// };
 
 const displayPostErrorMessage = () => {
     const bookingError = document.getElementById("bookingError");
@@ -305,12 +285,6 @@ const toggleView = (element) => {
     element.classList.toggle("hidden")
 };
 
-const closeBookWindow = (event) => {
-    if (event.target.id === "bookCloseModal") {
-        hideBookingModal()
-    }
-};
-
 
 estimatedTripCostBtn.addEventListener("click", function () {
     showTripCosts(event)
@@ -318,9 +292,6 @@ estimatedTripCostBtn.addEventListener("click", function () {
 
 letsBookATripButton.addEventListener("click", showBookingForm);
 
-// closeModal.addEventListener("click", function () {
-//     closeModalWindow(event)
-// });
 
 const closeModalWindow = (event) =>{
     if (event.target.id === 'closeModal') {
