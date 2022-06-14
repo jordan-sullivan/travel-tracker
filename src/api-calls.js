@@ -15,37 +15,29 @@ const fetchAll = () => {
         fetchAPIData('travelers'),
         fetchAPIData('trips'),
         fetchAPIData('destinations'),
-        fetchSingleTraveler('25')
+        fetchSingleTraveler('33')
     ])
         .catch(err => displayError(err))
 }
 
-const displayError = (errMsg) => {
-    const bookingError = document.getElementById('bookingError');
-    const msg = errMsg.message === 'Failed to fetch' ?
-        "Internet connection may be unstable. Please try again later." : errMsg;
-    bookingError.innerText = `Something went wrong, please try again later.`;
-}
 
 const postNewTrip = (newTrip) => {
     return fetch('http://localhost:3001/api/v1/trips', {
         method: 'POST',
         body: JSON.stringify(newTrip),
         headers: {
-            'Content-Type': 'application/json'
+            "Content-Type":"application/json"
         }
     })
-        .then(response => checkForError(response))
-        .catch(err => err)
-};
-
-const checkForError = (response) => {
-    if (!response.ok) {
-        throw new Error('404 error');
-    } else {
-        return response.json();
-    }
+    .then(response => response.json())
+    .catch(err => displayError(err))
 }
 
+const displayError = (errMsg) => {
+    const bookingError = document.getElementById('bookingError');
+    const msg = errMsg.message === 'Failed to fetch' ?
+        "An error has occured. Please try again later." : errMsg;
+    bookingError.innerText = `An error has occured, please try again later.`;
+}
 
-export { fetchAll }
+export { fetchAll, postNewTrip }
