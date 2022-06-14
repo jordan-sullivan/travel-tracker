@@ -13,6 +13,7 @@ const fetchSingleTraveler = (id) => {
 const fetchAll = () => {
     return Promise.all([
         fetchAPIData('travelers'),
+        
         fetchAPIData('trips'),
         fetchAPIData('destinations'),
         fetchSingleTraveler('2')

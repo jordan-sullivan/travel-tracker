@@ -17,6 +17,7 @@ let clickToBook = document.getElementById('clickToBook')
 let bookForm = document.getElementById('bookingForm')
 let mainPage = document.getElementById('mainPage')
 let estimatedTripCostBtn = document.getElementById('costBtn')
+const bookButton = document.querySelector(".book-btn")
 
 let navButtons = document.querySelectorAll(".nav-btn");
 let allTripBtn = document.getElementById("allTrips");
@@ -34,9 +35,9 @@ window.addEventListener('load', function () {
 // closeCostModal.addEventListener('click', function() {
 //   closeModalWindow(event)
 // });
-// bookYourTripBtn.addEventListener('click', function() {
-//   bookNewTrip(event);
-// });
+bookButton.addEventListener('click', function() {
+  bookNewTrip(event);
+});
 // closeBookModal.addEventListener('click', function() {
 //   closeBookWindow(event)
 // });
@@ -104,7 +105,7 @@ const loadCards = (event) => {
 const displayTravelerName = (traveler) => {
     const greetingMsg = document.querySelector('.main-title');
     const firstName = traveler.name.split(' ')[0];
-    greetingMsg.innerText = `>> ${firstName}'s travel tracker`;
+    greetingMsg.innerText = ` ✈ ${firstName}'s travel tracker`;
 };
 
 const displayYearlyTotal = (total) => {
@@ -243,6 +244,29 @@ const closeModalWindow = (event) => {
 const hideModal = () => {
     const costModal = document.getElementById('costModal')
     this.toggleView(costModal)
+};
+
+const bookNewTrip = (event) => {
+    event.preventDefault()
+    const postTripObj = loadFormValues();
+    const newTrip = new Trip(postTripObj)
+    console.log("NEWTRIP", newTrip)
+    const formFields = checkFormFields(newTrip);
+    if (!formFields) {
+        alert('Please check to make sure all fields are filled out and departure date is today or later.')
+    } else {
+        postNewTrip(newTrip)
+        .then(response => {
+            console.log(response.message);
+            if (response.message !== '404 error') {
+                getAllData(traveler.id);
+                displayBookingModal(newTrip, allDestinations);
+                //NEED TO MAKE THIS
+            } else {
+                displayPostErrorModal();
+            }
+        })
+    }
 };
 
 // const closeBookWindow = (event) => {

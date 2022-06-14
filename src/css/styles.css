@@ -9,6 +9,7 @@
 
 body {
   background: white;
+  border-left: solid 50px #6C4A3F;
 /* background: url(../images/sands.jpg);
 background-size: cover;
 background-attachment: fixed; */
@@ -40,7 +41,7 @@ h5 {
 .main-header {
   display: flex;
   justify-content: flex-start;
-  border-bottom: solid .5px #6C4A3F;
+  /* border-bottom: solid .5px #6C4A3F; */
   color: white;
   background: #6C4A3F;
 }
@@ -52,7 +53,7 @@ h5 {
   margin-right: 55%;
   display: flex;
   justify-content:center;
-  border-bottom: solid .5px #6C4A3F;
+  /* border-bottom: solid .5px #6C4A3F; */
   color: white;
 }
 
