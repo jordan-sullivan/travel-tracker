@@ -27,10 +27,18 @@ window.addEventListener('load', function () {
     navButtons.forEach(button => button.addEventListener('click', loadCards))
 });
 
-estimatedTripCostBtn.addEventListener('click', function () {
-    showTripCosts(event)
-});
-
+// estimatedTripCostBtn.addEventListener('click', function () {
+//     showTripCosts(event)
+// });
+// closeCostModal.addEventListener('click', function() {
+//   closeModalWindow(event)
+// });
+// bookYourTripBtn.addEventListener('click', function() {
+//   bookNewTrip(event);
+// });
+// closeBookModal.addEventListener('click', function() {
+//   closeBookWindow(event)
+// });
 
 const getAllData = () => {
     fetchAll()
