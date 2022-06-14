@@ -32,7 +32,6 @@ estimatedTripCostBtn.addEventListener('click', function () {
 });
 
 
-
 const getAllData = () => {
     fetchAll()
     .then(data => {
@@ -93,11 +92,10 @@ const loadCards = (event) => {
     displayTripCards(trips, allDestinations)
 };
 
-
 const displayTravelerName = (traveler) => {
-    const greetingMsg = document.getElementById('greetingMsg');
+    const greetingMsg = document.querySelector('.main-title');
     const firstName = traveler.name.split(' ')[0];
-    greetingMsg.innerText = `Hi ${firstName},`;
+    greetingMsg.innerText = `>> ${firstName}'s travel tracker`;
 };
 
 const displayYearlyTotal = (total) => {
@@ -112,7 +110,6 @@ const displayYearlyTotal = (total) => {
         totalSpent.innerText = '$0 spent in 2022';
     }
 };
-
 
 const displayCardSectionHeader = (header) => {
     const newHeader = document.getElementById('tripCardsHeader')
@@ -145,28 +142,25 @@ const displayTripCards = (travelerTrips, allDestinations) => {
     }
 };
 
-
-//Booking Form Functions//
+// Booking Form Functions //
 const showBookingForm = () => {
     toggleView(bookForm)
-    loadBookingDestinations(allDestinations)
+    loadPlacesDropdown(allDestinations)
 };
 
 const toggleView = (element) => {
     element.classList.toggle('hidden')
 };
 
-const loadBookingDestinations = (allDestinations) => {
-    //this needs refactoring!!!
-    const destList = document.getElementById('destinationChoices')
+const loadPlacesDropdown = (allDestinations) => {
+    const placesDropdown = document.getElementById('destinationChoices')
     let destNames = allDestinations.sort((a, b) => a.destination.localeCompare(b.destination))
-    destNames.forEach(d => {
+    destNames.forEach(place => {
         let destSelect = `
-        <option class='form-fields' value='${d.id}' required>${d.destination}</option>`
-        destList.insertAdjacentHTML('beforeend', destSelect)
-        //WTF IS THIS
+        <option class='form-fields' value='${place.id}' required>${place.destination}</option>`
+        placesDropdown.insertAdjacentHTML('beforeend', destSelect)
+       
     });
-    //what happens after this???????
 };
 
 const showTripCosts = (event) => {
@@ -180,31 +174,6 @@ const showTripCosts = (event) => {
         const tripCost = newTrip.calculateTripCost(allDestinations)
         const perPerson = newTrip.calculateCostPerPersonPerTrip(tripCost)
         displayTripCostsModal(tripCost, perPerson)
-    }
-};
-
-const bookNewTrip = (event) => {
-    //WHAT IS CALLING THIS???
-    event.preventDefault()
-    const postTripObj = loadFormValues();
-    const newTrip = new Trip(postTripObj)
-    const formFields = checkFormFields(newTrip);
-    if (!formFields) {
-        alert('Please check to make sure all fields are filled out and departure date is today or later.')
-    } else {
-        postNewTrip(newTrip)
-        .then(response => {
-            console.log(response.message);
-            if (response.message !== '404 error') {
-                getAllData(traveler.id);
-                //NEED TO GET THIS FUNCTION WORKING!! WASN'T EARLIER
-                displayBookingModal(newTrip, allDestinations);
-                //NEED TO MAKE THIS
-            } else {
-                displayPostErrorModal();
-                //NEED THIS TOO
-            }
-        })
     }
 };
 
@@ -250,7 +219,8 @@ const displayTripCostsModal = (cost, perPerson) => {
     <label for='trip-cost'>ESTIMATED TRIP COST:</label>
     <p class='trip-cost'>$${cost}</p>
     <label for='trip-cost-per-person'>COST PER PERSON:</label>
-    <p class='trip-cost-per-person'>${perPerson}</p>
+    <p class='trip-cost-per-person'>$${perPerson}</p>
+    <p class="agent-note">*please note: prices includes a 10% agent fee</p><br><br>
     </div>
     </article>`;
 };

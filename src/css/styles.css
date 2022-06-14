@@ -9,9 +9,9 @@
 
 body {
   background: white;
-  /* background: url(../images/sands.jpg);
-  background-size: cover;
-  background-attachment: fixed; */
+/* background: url(../images/sands.jpg);
+background-size: cover;
+background-attachment: fixed; */
 }
 
 .click-to-book {
@@ -57,10 +57,10 @@ h5 {
 }
 
 .greeting-msg {
-  font-size: 4.6em;
+  font-size: 30px;;
   display: flex;
-  margin-right: 3%;
-  margin-left: 3%;
+  justify-content: flex-start;
+  margin-left: 2%;
 }
 
 .cost-logout-section {
@@ -73,6 +73,7 @@ h5 {
 .nav-buttons {
   display: flex;
   justify-content: space-evenly;
+  margin-top: 3%;
   margin-left: 10%;
   margin-right: 10%;
   margin-bottom: 1%;
@@ -84,6 +85,7 @@ h5 {
   border: none;
   box-shadow: 1px .5px 3px 0px black;
   width: 15%;
+  height: 20%;
   font-size: 1em;
 }
 
@@ -91,7 +93,7 @@ h5 {
 .nav-btn:hover {
   cursor: pointer;
   color: tan;
-  transform: translateY(-2px);
+  transform: translateY(-6px);
   transition: .4s;
 }
 
