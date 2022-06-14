@@ -4,13 +4,12 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <!-- <script src="https://kit.fontawesome.com/10ffbe374d.js" crossorigin="anonymous"></script> -->
-  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400&family=Spectral:ital,wght@1,300&display=swap"
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inconsolata&family=Inter:wght@300&family=Montserrat:wght@100&display=swap"
     rel="stylesheet">
   <title>Dusty Nomad: Travel Tracker</title>
 </head>
-
 <body>
   <main>
     <section class='main-page' id='mainPage'>
@@ -40,7 +39,7 @@
 
      
       <section class="booking-section" id='bookingSection'>
-        <h4 for="click-to-book-link" class="click-to-book" id='clickToBook'>
+        <h4 for="lets-book-a-trip-link" class="lets-book-a-trip" id='letsBookATrip'>
            ✈ let's book a trip </h4>
        
             <form role='booking-form' class='booking-form hidden' id="bookingForm">
@@ -83,11 +82,13 @@
       <!-- ESTIMATE COST MODAL -->
       <section class="cost-modal hidden" id="costModal">
         <article class="modal-content" id='modalContent'>
+          <button class="close-modal" id="closeModal">&times;</button>
         </article>
       </section>
       <!-- BOOKING CONFIRMATION MODAL -->
       <section class="book-modal hidden" id="bookModal">
         <article class="book-modal-content" id='bookModalContent'>
+          <button class="close-modal" id="bookCloseModal">&times;</button>
         </article>
       </section>
       <!-- TRIP CARDS -->

@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   border: 0;
-  font-family: "Raleway", sans-serif;
+  font-family: 'Inconsolata', monospace;
   color: #6C4A3F;
   line-height: 1.75;
 }
@@ -15,7 +15,7 @@ background-size: cover;
 background-attachment: fixed; */
 }
 
-.click-to-book {
+.lets-book-a-trip {
   font-size: 2.5em;
   margin-top: 2%;
   text-align: center;
@@ -50,7 +50,7 @@ h5 {
   color: white;
   background: #6C4A3F;
   font-size: 2em;
-  margin-right: 55%;
+  margin-right: 20%;
   display: flex;
   justify-content:center;
   /* border-bottom: solid .5px #6C4A3F; */
@@ -104,7 +104,7 @@ h5 {
 display: flex;
 justify-content: space-evenly;
 color: white;
-margin-left: 10%;
+margin-left: 40%;
 margin-top: 2%;
 border-radius: 5%;
 font-size: 20px;
@@ -153,13 +153,13 @@ font-size: 20px;
   border-radius:2%;
 }
 
-.click-to-book:hover {
+.lets-book-a-trip:hover {
   cursor: pointer;
   color: tan;
   transition-property: all;
   transition-duration: .4s;
   transition-timing-function: ease-in-out;
-  letter-spacing: 5px;
+  letter-spacing: 4px;
 }
 
 .booking-form {
