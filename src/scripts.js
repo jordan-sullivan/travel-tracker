@@ -136,4 +136,99 @@ const displayTripCards = (travelerTrips, allDestinations) => {
     }
 }
 
+const showBookingForm = () => {
+    toggleView(bookForm)
+    domUpdates.loadBookingDestinations(allDestinations)
+};
+
+const toggleView = (element) => {
+    element.classList.toggle('hidden')
+};
+
+const loadBookingDestinations = (allDestinations) => {
+    const destList = document.getElementById('destinationChoices')
+    let destNames = allDestinations.sort((a, b) => a.destination.localeCompare(b.destination))
+    destNames.forEach(d => {
+        let destSelect = `
+      <option class='form-fields' value='${d.id}' required>${d.destination}</option>`
+        destList.insertAdjacentHTML('beforeend', destSelect)
+    });
+};
+
+const loadFormValues = () => {
+    const destinationID = document.getElementById('destinationChoices').value;
+    const departureDate = document.getElementById('departureDateInput').value;
+    const changeDate = departureDate.split('-');
+    const fixedDate = changeDate.join('/');
+    const tripLength = document.getElementById('durationInput').value;
+    const numOfTravelers = document.getElementById('travelersInput').value;
+    let postTripObject = {
+        "id": allTrips.length + 1,
+        "userID": traveler.id,
+        "destinationID": parseInt(destinationID),
+        "travelers": parseInt(numOfTravelers),
+        "date": fixedDate,
+        "duration": parseInt(tripLength),
+        "status": "pending",
+        "suggestedActivities": []
+    }
+    return postTripObject;
+}
+const checkFormFields = (newTrip) => {
+    const departureDate = document.getElementById('departureDateInput').value;
+    const changeDate = departureDate.split('-');
+    const fixedDate = changeDate.join('/');
+    const checkDate = new Date(fixedDate).getTime();
+    let filledOut = true;
+    if (!newTrip.destinationID || !newTrip.date || !newTrip.duration || !newTrip.travelers || checkDate < date) {
+        filledOut = false;
+    }
+    return filledOut;
+}
+const showTripCosts = (event) => {
+    event.preventDefault()
+    const formTripData = loadFormValues();
+    const newTrip = new Trip(formTripData)
+    const formFields = checkFormFields(newTrip);
+    if (!formFields) {
+        alert('Please check to make sure all fields are filled out and departure date is a future date.')
+    } else {
+        const tripCost = newTrip.calculateTripCost(allDestinations)
+        const perPerson = newTrip.calculateCostPerPersonPerTrip(tripCost)
+        domUpdates.displayTripCostsModal(tripCost, perPerson)
+    }
+};
+
+const closeModalWindow = (event) => {
+    if (event.target.id === 'closeModal') {
+        domUpdates.hideModal()
+    }
+};
+
+const bookNewTrip = (event) => {
+    event.preventDefault()
+    const postTripObj = loadFormValues();
+    const newTrip = new Trip(postTripObj)
+    const formFields = checkFormFields(newTrip);
+    if (!formFields) {
+        alert('Please check to make sure all fields are filled out and departure date is today or later.')
+    } else {
+        postNewTrip(newTrip)
+            .then(response => {
+                console.log(response.message);
+                if (response.message !== '404 error') {
+                    getAllData(traveler.id);
+                    domUpdates.displayBookingModal(newTrip, allDestinations);
+                } else {
+                    domUpdates.displayPostErrorModal();
+                }
+            })
+    }
+};
+
+const closeBookWindow = (event) => {
+    if (event.target.id === 'bookCloseModal') {
+        domUpdates.hideBookingModal()
+    }
+}
 
