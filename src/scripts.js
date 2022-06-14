@@ -21,11 +21,12 @@ let estimatedTripCostBtn = document.getElementById('costBtn')
 let navButtons = document.querySelectorAll(".nav-btn");
 let allTripBtn = document.getElementById("allTrips");
 
-//Event Listeners//
 window.addEventListener('load', function () {
     getAllData();
     navButtons.forEach(button => button.addEventListener('click', loadCards))
 });
+
+//Event Listeners//
 
 // estimatedTripCostBtn.addEventListener('click', function () {
 //     showTripCosts(event)
@@ -150,7 +151,7 @@ const displayTripCards = (travelerTrips, allDestinations) => {
     }
 };
 
-// Booking Form Functions //
+// Booking Form / POST Functions //
 const showBookingForm = () => {
     toggleView(bookForm)
     loadPlacesDropdown(allDestinations)
@@ -233,13 +234,12 @@ const displayTripCostsModal = (cost, perPerson) => {
     </article>`;
 };
 
-
-
 const closeModalWindow = (event) => {
     if (event.target.id === 'closeModal') {
         hideModal()
     }
 };
+
 const hideModal = () => {
     const costModal = document.getElementById('costModal')
     this.toggleView(costModal)

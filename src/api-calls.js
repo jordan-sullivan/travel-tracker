@@ -20,7 +20,6 @@ const fetchAll = () => {
         .catch(err => displayError(err))
 }
 
-
 const postNewTrip = (newTrip) => {
     return fetch('http://localhost:3001/api/v1/trips', {
         method: 'POST',
