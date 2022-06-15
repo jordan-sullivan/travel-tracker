@@ -12,6 +12,20 @@
 </head>
 <body>
   <main>
+    <section class='login-page hidden' id='loginPage'>
+      <h1 class='login-title' id='loginTitle'>travel tracker</h1>
+      <p class='sign-in'>please sign in</p>
+      <section class='login-form' id='loginForm'>
+        <form role="form" class='login-inputs' id='loginInputs'>
+          <label for='username' class='username'>username:</label>
+          <input type='text' class='login-fields' id='username' autocomplete='off' required>
+          <label for='password' class='password'>password:</label>
+          <input type='password' class='login-fields' id='password' autocomplete='off' required>
+          <button class='login-btn' id='loginBtn'>wheels up!</button>
+        </form>
+      </section>
+      <p class='login-error hidden' id='loginError'>Invalid username or password. Please try again.</p>
+    </section>
     <section class='main-page' id='mainPage'>
       <header class='main-header' id='mainHeader'>
         <h1 class='main-title'> ✈ travel tracker</h1>
@@ -31,13 +45,11 @@
         <button class='nav-btn' id='pending'>pending trips</button>
         <button class='nav-btn' id='all'>all trips</button>
       </nav>
-
       <section class="booking-section" id='bookingSection'>
         <button class="lets-book-a-trip-button" id='letsBookATripButton'>
           <h4 for="lets-book-a-trip-link" class="lets-book-a-trip" id='letsBookATrip'>
              ✈ let's book a trip </h4>
         </button>
-
             <form role='booking-form' class='booking-form hidden' id="bookingForm">
               <section class="input">
                 <label for="destinationForm">choose a destination:
