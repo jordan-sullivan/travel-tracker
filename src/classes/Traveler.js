@@ -1,33 +1,12 @@
 import Trip from "./Trip"
-
-// class Traveler {
-//     constructor(travelersData) {
-//         this.id = travelersData.id;
-//         this.name = travelersData.name;
-//         this.travelerType = travelersData.travelerType;
-//         this.allTrips = []; 
-//     }
-
-//     returnFirstName() {
-//         const firstName = this.name.split(" ")[0];
-//         return firstName;
-//     }
-
-//     listAllTrips(tripsData) {
-//         tripsData.forEach(trip => {
-//             if (this.id === trip.userID) {
-//                 this.allTrips.push(new Trip(trip));
-//             };
-//         })
-//     };
-// }
+import Destination from "./Destination"
 
 class Traveler {
     constructor(singleTraveler) {
         this.id = singleTraveler.id;
         this.name = singleTraveler.name;
         this.travelerType = singleTraveler.travelerType;
-        this.username = `customer${singleTraveler.id}`;
+        this.username = `traveler${singleTraveler.id}`;
         this.trips = [];
         this.amountSpent = 0;
     }
