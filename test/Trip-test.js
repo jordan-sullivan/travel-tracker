@@ -7,14 +7,14 @@ import { travelersData, tripData, destinationsData } from "./sample-test-data"
 
 
 describe("Trip", () => {
-    let traveler20, traveler23, traveler20Trips, traveler23Trips;
+    let trip169, trip114, trip56, trip57;
 
     beforeEach(() => {
-        traveler20 = new Traveler(travelersData[0]);
-        traveler23 = new Traveler(travelersData[3]);
 
-        traveler20Trips = new Trip(tripData, 20);
-        traveler23Trips = new Trip(tripData, 23);
+        trip169 = new Trip(tripData[0]);
+        trip114 = new Trip(tripData[1]);
+        trip56 = new Trip(tripData[2]);
+        trip57 = new Trip(tripData[3]);
     });
 
     it("should be a function", () => {
@@ -22,67 +22,44 @@ describe("Trip", () => {
     });
 
     it("should be an instance of Trip", () => {
-        expect(traveler20Trips).to.be.an.instanceof(Trip);
-        expect(traveler23Trips).to.be.an.instanceof(Trip);
+        expect(trip56).to.be.an.instanceof(Trip);
+        expect(trip57).to.be.an.instanceof(Trip);
     });
 
-    it("should find and store all trips for a specific traveler", () => {
-        expect(traveler23Trips.travelerTripData.length).to.equal(4);
-        expect(traveler20Trips.travelerTripData.length).to.equal(1);
+    it('should have an id', () => {
+        expect(trip169.id).to.equal(169);
+        expect(trip114.id).to.equal(114);
     });
 
-    it("should be able to return a travelers' destination ids of all trips regardless of status", () => {
-        expect(traveler23Trips.destinationID).to.deep.equal([15, 9, 21, 17]);
-        expect(traveler20Trips.destinationID).to.deep.equal([15]);
+    it("should have a user ID", () => {
+        expect(trip169.userID).to.equal(23);
+        expect(trip114.userID).to.equal(23);
     });
 
-    it("should calculate the cost of a single traveler's trip ", () => {
-        expect(traveler23Trips.getSingleTripCost(169, 40, 900)).to.equal(1738.00);
-        expect(traveler23Trips.getSingleTripCost(114, 100, 950)).to.equal(2915.00);
-        expect(traveler23Trips.getSingleTripCost(56, 100, 350)).to.equal(3245.00);
+    it("should have a destination ID", () => {
+        expect(trip169.destinationID).to.equal(15);
+        expect(trip56.destinationID).to.equal(21);
+        expect(trip57.destinationID).to.equal(17);
     });
 
-    it("should calculate all trips taken this year for a specific traveler", () => {
-        expect(traveler23Trips.getYearsTripCost(destinationsData)).to.equal(4983.00);
-        expect(traveler20Trips.getYearsTripCost(destinationsData)).to.equal(0.00);
+    it("should have a total number of travelers", () => {
+        expect(trip169.travelers).to.equal(1);
+        expect(trip57.travelers).to.equal(2);
     });
 
-    it("should store the traveler's past trips in an array", () => {
-        expect(traveler23Trips.getPastTrips().length).to.equal(3);
-        expect(traveler20Trips.getPastTrips()).to.deep.equal([{
-            id: 45,
-            userID: 20,
-            destinationID: 15,
-            travelers: 1,
-            date: "2020/09/06",
-            duration: 0,
-            status: "approved",
-            suggestedActivities: []
-        }]);
+    it('should be able to get a start date time stamp', () => {
+        trip169.getTripTimeStamps();
+        expect(trip169.startDateTimeStamp).to.equal(1641970800000);
     });
 
-    it("should store the traveler's upcoming trips in an array, regardless of status", () => {
-        expect(traveler23Trips.getUpcomingTrips().length).to.equal(1);
-        expect(traveler20Trips.getUpcomingTrips()).to.deep.equal([]);
+    it('should be able to get an end date time stamp', () => {
+        trip56.getTripTimeStamps();
+        expect(trip56.endDateTimeStamp).to.equal(1659420000000);
     });
 
-    it("should store the traveler's active, present trips in an array", () => {
-        expect(traveler23Trips.getPresentTrip().length).to.equal(0);
-        expect(traveler20Trips.getPresentTrip()).to.deep.equal([]);
-    });
-
-    it("should store the traveler's pending trips in an array", () => {
-        expect(traveler23Trips.getPendingTrips()).to.deep.equal([{
-            id: 56,
-            userID: 23,
-            destinationID: 21,
-            travelers: 3,
-            date: "2022/07/14",
-            duration: 19,
-            status: "pending",
-            suggestedActivities: []
-        },]);
-        expect(traveler20Trips.getPendingTrips().length).to.equal(0);
+    it("should calculate the cost of a single traveler's trip including a 10% agent fee", () => {
+        expect(trip169.calculateTripCost(destinationsData)).to.equal(1738.00);
+        expect(trip114.calculateTripCost(destinationsData)).to.equal(2915.00);
     });
 
 
