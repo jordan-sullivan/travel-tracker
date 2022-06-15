@@ -25,13 +25,7 @@ Travel Tracker is an application built in week 11 of [Turing School of Software 
 
 ## Illustrations
 
-![FitLit gif](https://media.giphy.com/media/kiAPxM21iJUPXojx50/giphy.gif)
-
-Users can toggle between data to view their weekly stats as well as check their account info. 
-
-![FitLit gif](https://media.giphy.com/media/WCv4SlfVogA0rQQXEG/giphy.gif)
-
-Users can post their sleep, hydration, and activity stats. 
+![TravelTracker gif](https://media.giphy.com/media/qiRG9s09xkBWpPQgyE/giphy.gif)
 
 
 **[Back to top](#table-of-contents)**
@@ -84,12 +78,3 @@ Users can post their sleep, hydration, and activity stats.
 
 
 **[Back to top](#table-of-contents)**
-
-
-## Deploying to GitHub Pages
-
-_If you are finished with the functionality and testing of your project_, then you can consider deploying your project to the web! This way anyone can play it without cloning down your repo.
-
-[GitHub Pages](https://pages.github.com/) is a great way to deploy your project to the web. Don't worry about this until your project is free of bugs and well tested!
-
-If you _are_ done, you can follow [this procedure](./gh-pages-procedure.md) to get your project live on GitHub Pages.
