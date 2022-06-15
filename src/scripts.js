@@ -1,9 +1,6 @@
 //IMPORTS //
 
 import "./css/styles.css";
-//import "./images/sands.jpg"
-//import dayjs from "dayjs";
-//dayjs().format();
 import Traveler from "./classes/Traveler.js";
 import Trip from "./classes/Trip.js";
 import Destination from "./classes/Destination.js";
@@ -34,7 +31,7 @@ window.addEventListener("load", function () {
 bookButton.addEventListener("click", function() {
   bookNewTrip(event);
 });
-//VALIDATELOGINFUNCTION
+
 const validateLogin = (event) => {
     event.preventDefault();
     const usernameInput = document.getElementById('username').value;
@@ -289,7 +286,6 @@ const findBookedDestination = (newTrip, allDestinations) => {
     return matchedDest;
 };
 
-
 const displayPostErrorMessage = () => {
     const bookingError = document.getElementById("bookingError");
     const bookingForm = document.getElementById("bookingForm")
@@ -325,14 +321,15 @@ const hideModal = () => {
     toggleView(costModal)
 }
 
-
 const logInLogOut = () => {
     toggleView(loginPage)
     toggleView(mainPage)
 }
-//LOGIN BUTTON
+
 loginBtn.addEventListener('click', function () {
     validateLogin(event);
 })
-//LOGOUT BUTTON
-logoutBtn.addEventListener('click', logInLogOut)
+
+logoutBtn.addEventListener('click', function () {
+    toggleView(loginPage)
+})

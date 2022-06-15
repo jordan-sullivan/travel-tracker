@@ -10,9 +10,6 @@
 body {
   background: white;
   border-left: solid 50px #6C4A3F;
-/* background: url(../images/sands.jpg);
-background-size: cover;
-background-attachment: fixed; */
 }
 
 .lets-book-a-trip, 
@@ -313,7 +310,7 @@ font-size: 20px;
   width: 100%;
   padding: 7%;
   background: #6C4A3F;
-  opacity: 80%;
+  opacity: 70%;
 }
 
 .login-btn {
@@ -335,6 +332,7 @@ font-size: 20px;
   border-radius: 5%;
   width: 15%;
   padding: .5%;
+  font-size: 20px;
 }
 
 .password,
@@ -356,23 +354,6 @@ font-size: 20px;
   color: white;
   background: #093D39;
 }
-
-/* .logout-btn {
-  color: white;
-  background: #093D39;
-  width: 4%;
-  height: 50%;
-  border: solid 1px white;
-  text-align: center;
-  border-radius: 2%;
-  font-size: .8em;
-  box-shadow: .5px .5px 5px 0px white;
-  display: flex;
-  justify-content: flex-end;
-  border-bottom: solid .5px #093D39;
-  color: white;
-  background: #093D39;
-} */
 
 .hidden {
   display: none;
