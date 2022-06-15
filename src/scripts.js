@@ -19,7 +19,11 @@ const bookForm = document.getElementById("bookingForm")
 const estimatedTripCostBtn = document.getElementById("costBtn")
 const bookButton = document.querySelector(".book-btn")
 const closeModal = document.querySelector(".close-modal");
+let mainPage = document.getElementById("mainPage");
 let navButtons = document.querySelectorAll(".nav-btn");
+let closeCostModal = document.getElementById("costModal");
+let closeBookModal = document.getElementById("bookModal");
+let bookYourTripBtn = document.getElementById("bookBtn");
 
 //EVENT LISTENERS//
 
@@ -28,8 +32,15 @@ window.addEventListener("load", function () {
     navButtons.forEach(button => button.addEventListener("click", loadCards))
 });
 
-bookButton.addEventListener("click", function() {
+bookYourTripBtn.addEventListener("click", function() {
   bookNewTrip(event);
+});
+//-----------------------------------------------------------------------
+closeBookModal.addEventListener('click', function () {
+    closeBookWindow(event)
+})
+closeCostModal.addEventListener('click', function () {
+    closeModalWindow(event)
 });
 
 const validateLogin = (event) => {
@@ -67,7 +78,7 @@ const getAllData = (userID) => {
         allDestinations = fetchDestinationsData.map(dest => new Destination(dest));
         loadTravelerData()
     })
-    .catch(err => displayError(err))
+    //.catch(err => displayError(err))
 }
 
 const loadTravelerData = () => {
@@ -235,6 +246,7 @@ const displayTripCostsModal = (cost, perPerson) => {
     costModal.innerHTML = `
     <article class="modal-content" id="modalContent">
     <button class="close-modal" id="closeModal">&times;</button>
+
     <div class="trip-costs" id="tripCosts">
     <label for="trip-cost">ESTIMATED TRIP COST:</label>
     <p class="trip-cost">$${cost}</p>
@@ -272,7 +284,13 @@ const displayBookingModal = (newTrip, allDestinations) => {
     toggleView(bookModal)
     bookModal.innerHTML = `
     <article class="book-modal-content" id="bookModalContent">
-    <button class="close-modal" id="bookCloseModal">&times;</button>
+
+
+
+ <button class="book-close-modal" id="bookCloseModal">&times;</button>
+
+
+
       <div class="booking-confirm-msg">
         <label for="booking-msg" class="booking-msg">YOUR VACATION TO:</label>
         <p class="booking-msg-info">${dest.destination} for ${newTrip.duration} days</p>
@@ -302,9 +320,12 @@ const toggleView = (element) => {
     element.classList.toggle("hidden")
 };
 
-
+///HERE-----------------------------------------------------------------------------
 estimatedTripCostBtn.addEventListener("click", function () {
     showTripCosts(event)
+    setTimeout(() => {
+        closeModalWindow(event)
+    }, 3000)
 });
 
 letsBookATripButton.addEventListener("click", showBookingForm);
@@ -333,3 +354,22 @@ loginBtn.addEventListener('click', function () {
 logoutBtn.addEventListener('click', function () {
     toggleView(loginPage)
 })
+
+const closeBookWindow = (event) => {
+    if (event.target.id === 'bookCloseModal') {
+        hideBookingModal()
+    }
+};
+
+const hideBookingModal = () => {
+    const bookModal = document.getElementById('bookModal')
+    const bookingForm = document.getElementById('bookingForm')
+    clearFormFields();
+    toggleView(bookModal);
+    toggleView(bookingForm);
+};
+
+const clearFormFields = () => {
+    const bookingForm = document.getElementById('bookingForm')
+    bookingForm.reset();
+};
