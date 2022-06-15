@@ -279,6 +279,101 @@ font-size: 20px;
   cursor: pointer;
 }
 
+.login-page {
+  background: url(../images/sands.jpg) no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5%;
+}
+
+.login-title {
+  font-size: 3em;
+  margin: 5px 0px 0px 0px;
+  font-family: 'Inconsolata',
+  monospace;
+  color: black;
+  text-decoration: 1px underline;
+  text-underline-offset: 40%;
+}
+
+.sign-in {
+  font-size: 1.8em;
+  font-style: italic;
+  margin-bottom: 7%;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 7%;
+  background: #6C4A3F;
+  opacity: 80%;
+}
+
+.login-btn {
+  padding: 1% 2%;
+  margin-left: 5%;
+  font-size: 1em;
+  border-radius: 5%;
+}
+
+.login-inputs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  color: white;
+}
+
+.login-fields {
+  border-radius: 5%;
+  width: 15%;
+  padding: .5%;
+}
+
+.password,
+.username {
+  font-size: 30px;
+  margin-right: 2%;
+  margin-left: 2%;
+  color: white;
+}
+
+.login-error,
+.booking-error {
+  color: #093D39;
+  text-align: center;
+  font-size: 2em;
+}
+
+.login-error {
+  color: white;
+  background: #093D39;
+}
+
+/* .logout-btn {
+  color: white;
+  background: #093D39;
+  width: 4%;
+  height: 50%;
+  border: solid 1px white;
+  text-align: center;
+  border-radius: 2%;
+  font-size: .8em;
+  box-shadow: .5px .5px 5px 0px white;
+  display: flex;
+  justify-content: flex-end;
+  border-bottom: solid .5px #093D39;
+  color: white;
+  background: #093D39;
+} */
+
 .hidden {
   display: none;
 }

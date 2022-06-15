@@ -34,16 +34,37 @@ window.addEventListener("load", function () {
 bookButton.addEventListener("click", function() {
   bookNewTrip(event);
 });
+//VALIDATELOGINFUNCTION
+const validateLogin = (event) => {
+    event.preventDefault();
+    const usernameInput = document.getElementById('username').value;
+    const travelerID = usernameInput.split('traveler')[1]
+    const passwordInput = document.getElementById('password').value;
+    const loginInputs = document.getElementById('loginInputs')
+    if (usernameInput !== '' && passwordInput !== ''
+        && usernameInput.includes("traveler") && passwordInput === "travel"
+        && travelerID > 0 && travelerID < 51 && travelerID.length <= 2) {
+        logInLogOut();
+        getAllData(travelerID);
+    } else {
+        const loginErrMsg = document.getElementById('loginError');
+        toggleView(loginErrMsg);
+        setTimeout(() => {
+            toggleView(loginErrMsg);
+        }, 3000)
+    }
+    loginInputs.reset()
+}
 
 // TRAVELER'S FUNCTIONS //
-const getAllData = () => {
-    fetchAll()
+const getAllData = (userID) => {
+    fetchAll(userID)
     .then(data => {
         fetchTravelersData = data[0].travelers;
         fetchTripsData = data[1].trips;
         fetchDestinationsData = data[2].destinations;
-        fetchSingleTravelerData = new Traveler(data[3]);
-        traveler = fetchSingleTravelerData;
+        fetchSingleTravelerData = data[3];
+        traveler = new Traveler(fetchSingleTravelerData);
         travelers = fetchTravelersData.map(trav => new Traveler(trav));
         allTrips = fetchTripsData.map(trip => new Trip(trip));
         allDestinations = fetchDestinationsData.map(dest => new Destination(dest));
@@ -303,3 +324,15 @@ const hideModal = () => {
     const costModal = document.getElementById('costModal')
     toggleView(costModal)
 }
+
+
+const logInLogOut = () => {
+    toggleView(loginPage)
+    toggleView(mainPage)
+}
+//LOGIN BUTTON
+loginBtn.addEventListener('click', function () {
+    validateLogin(event);
+})
+//LOGOUT BUTTON
+logoutBtn.addEventListener('click', logInLogOut)
