@@ -35,7 +35,7 @@ window.addEventListener("load", function () {
 bookYourTripBtn.addEventListener("click", function() {
   bookNewTrip(event);
 });
-//-----------------------------------------------------------------------
+
 closeBookModal.addEventListener('click', function () {
     closeBookWindow(event)
 })
@@ -78,7 +78,7 @@ const getAllData = (userID) => {
         allDestinations = fetchDestinationsData.map(dest => new Destination(dest));
         loadTravelerData()
     })
-    //.catch(err => displayError(err))
+    .catch(err => displayError(err))
 }
 
 const loadTravelerData = () => {
@@ -246,7 +246,6 @@ const displayTripCostsModal = (cost, perPerson) => {
     costModal.innerHTML = `
     <article class="modal-content" id="modalContent">
     <button class="close-modal" id="closeModal">&times;</button>
-
     <div class="trip-costs" id="tripCosts">
     <label for="trip-cost">ESTIMATED TRIP COST:</label>
     <p class="trip-cost">$${cost}</p>
@@ -284,13 +283,7 @@ const displayBookingModal = (newTrip, allDestinations) => {
     toggleView(bookModal)
     bookModal.innerHTML = `
     <article class="book-modal-content" id="bookModalContent">
-
-
-
  <button class="book-close-modal" id="bookCloseModal">&times;</button>
-
-
-
       <div class="booking-confirm-msg">
         <label for="booking-msg" class="booking-msg">YOUR VACATION TO:</label>
         <p class="booking-msg-info">${dest.destination} for ${newTrip.duration} days</p>
@@ -320,7 +313,6 @@ const toggleView = (element) => {
     element.classList.toggle("hidden")
 };
 
-///HERE-----------------------------------------------------------------------------
 estimatedTripCostBtn.addEventListener("click", function () {
     showTripCosts(event)
     setTimeout(() => {
